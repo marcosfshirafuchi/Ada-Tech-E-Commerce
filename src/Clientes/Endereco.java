@@ -7,12 +7,12 @@ public class Endereco {
     private String complemento;
     private String bairro;
     private String cidade;
-    private EstadosBrasil estados;
+    private EstadosDoBrasil estados;
 
     public Endereco(){
 
     }
-    public Endereco(String cep, String logradouro, String numero, String complemento, String bairro, String cidade, EstadosBrasil estados) {
+    public Endereco(String cep, String logradouro, String numero, String complemento, String bairro, String cidade, EstadosDoBrasil estados) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -22,7 +22,7 @@ public class Endereco {
         this.estados = estados;
     }
 
-    public Endereco(String cep, String logradouro, String numero, String bairro, String cidade, EstadosBrasil estados) {
+    public Endereco(String cep, String logradouro, String numero, String bairro, String cidade, EstadosDoBrasil estados) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;

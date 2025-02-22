@@ -2,7 +2,7 @@ package Clientes;
 
 public abstract class Cliente {
     private String nome;
-    private String documento;
+    private String numeroDoDocumento;
     private Endereco endereco;
     private String telefone;
     private String tipoDeCliente;
@@ -12,7 +12,7 @@ public abstract class Cliente {
     }
     public Cliente(String nome, String documento, Endereco endereco, String telefone,String tipoDeCliente) {
         this.nome = nome;
-        this.documento = documento;
+        this.numeroDoDocumento = documento;
         this.endereco = endereco;
         this.telefone = telefone;
         this.tipoDeCliente = tipoDeCliente;
@@ -26,12 +26,12 @@ public abstract class Cliente {
         this.nome = nome;
     }
 
-    public String getDocumento() {
-        return documento;
+    public String getNumeroDoDocumento() {
+        return numeroDoDocumento;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setNumeroDoDocumento(String numeroDoDocumento) {
+        this.numeroDoDocumento = numeroDoDocumento;
     }
 
     public Endereco getEndereco() {
@@ -62,7 +62,7 @@ public abstract class Cliente {
     public String toString() {
         return "Cliente{" +
                 "nome='" + nome + '\'' +
-                ", documento='" + documento + '\'' +
+                ", documento='" + numeroDoDocumento + '\'' +
                 ", endereco=" + endereco +
                 ", telefone='" + telefone + '\'' +
                 ", tipoDeCliente='" + tipoDeCliente + '\'' +

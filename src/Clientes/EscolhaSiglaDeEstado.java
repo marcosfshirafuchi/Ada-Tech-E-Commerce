@@ -31,89 +31,89 @@ public class EscolhaSiglaDeEstado {
                 "27 - Tocantins (TO)");
     }
 
-    public static EstadosBrasil buscarEstadoBrasileiroEscolhido(int codigo){
-        EstadosBrasil estado = null;
+    public static EstadosDoBrasil buscarEstadoBrasileiroEscolhido(int codigo){
+        EstadosDoBrasil estado = null;
         switch (codigo){
             case 1 :
-                estado = EstadosBrasil.ACRE;
+                estado = EstadosDoBrasil.ACRE;
                 break;
             case 2 :
-                estado = EstadosBrasil.ALAGOAS;
+                estado = EstadosDoBrasil.ALAGOAS;
                 break;
             case 3 :
-                estado = EstadosBrasil.AMAPA;
+                estado = EstadosDoBrasil.AMAPA;
                 break;
             case 4:
-                estado = EstadosBrasil.AMAZONAS;
+                estado = EstadosDoBrasil.AMAZONAS;
                 break;
             case 5 :
-                estado = EstadosBrasil.BAHIA;
+                estado = EstadosDoBrasil.BAHIA;
                 break;
             case 6 :
-                estado = EstadosBrasil.CEARA;
+                estado = EstadosDoBrasil.CEARA;
                 break;
             case 7 :
-                estado = EstadosBrasil.DISTRITO_FEDERAL;
+                estado = EstadosDoBrasil.DISTRITO_FEDERAL;
                 break;
             case 8 :
-                estado = EstadosBrasil.ESPIRITO_SANTO;
+                estado = EstadosDoBrasil.ESPIRITO_SANTO;
                 break;
             case 9 :
-                estado = EstadosBrasil.GOIAS;
+                estado = EstadosDoBrasil.GOIAS;
                 break;
             case 10 :
-                estado = EstadosBrasil.MARANHAO;
+                estado = EstadosDoBrasil.MARANHAO;
                 break;
             case 11 :
-                estado = EstadosBrasil.MATO_GROSSO;
+                estado = EstadosDoBrasil.MATO_GROSSO;
                 break;
             case 12 :
-                estado = EstadosBrasil.MATO_GROSSO_DO_SUL;
+                estado = EstadosDoBrasil.MATO_GROSSO_DO_SUL;
                 break;
             case 13 :
-                estado = EstadosBrasil.MINAS_GERAIS;
+                estado = EstadosDoBrasil.MINAS_GERAIS;
                 break;
             case 14 :
-                estado = EstadosBrasil.PARA;
+                estado = EstadosDoBrasil.PARA;
                 break;
             case 15 :
-                estado = EstadosBrasil.PARAIBA;
+                estado = EstadosDoBrasil.PARAIBA;
                 break;
             case 16 :
-                estado = EstadosBrasil.PARANA;
+                estado = EstadosDoBrasil.PARANA;
                 break;
             case 17 :
-                estado = EstadosBrasil.PERNAMBUCO;
+                estado = EstadosDoBrasil.PERNAMBUCO;
                 break;
             case 18 :
-                estado = EstadosBrasil.PIAUI;
+                estado = EstadosDoBrasil.PIAUI;
                 break;
             case 19 :
-                estado = EstadosBrasil.RIO_DE_JANEIRO;
+                estado = EstadosDoBrasil.RIO_DE_JANEIRO;
                 break;
             case 20 :
-                estado = EstadosBrasil.RIO_GRANDE_DO_NORTE;
+                estado = EstadosDoBrasil.RIO_GRANDE_DO_NORTE;
                 break;
             case 21 :
-                estado = EstadosBrasil.RIO_GRANDE_DO_SUL;
+                estado = EstadosDoBrasil.RIO_GRANDE_DO_SUL;
                 break;
             case 22 :
-                estado = EstadosBrasil.RONDONIA;
+                estado = EstadosDoBrasil.RONDONIA;
                 break;
             case 23 :
-                estado = EstadosBrasil.RORAIMA;
+                estado = EstadosDoBrasil.RORAIMA;
                 break;
             case 24 :
-                estado = EstadosBrasil.SANTA_CATARINA;
+                estado = EstadosDoBrasil.SANTA_CATARINA;
                 break;
             case 25 :
-                estado = EstadosBrasil.SAO_PAULO;
+                estado = EstadosDoBrasil.SAO_PAULO;
                 break;
             case 26 :
-                estado = EstadosBrasil.SERGIPE;
+                estado = EstadosDoBrasil.SERGIPE;
                 break;
             case 27 :
-                estado = EstadosBrasil.TOCANTINS;
+                estado = EstadosDoBrasil.TOCANTINS;
                 break;
         }
         return estado;

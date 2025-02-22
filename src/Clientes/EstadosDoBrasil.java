@@ -1,6 +1,6 @@
 package Clientes;
 
-public enum EstadosBrasil {
+public enum EstadosDoBrasil {
     ACRE("AC"),
     ALAGOAS("AL"),
     AMAPA("AP"),

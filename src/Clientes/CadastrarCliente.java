@@ -51,7 +51,7 @@ public class CadastrarCliente {
         imprimirSiglaDosEstadosBrasileiros();
         System.out.print("Digite o código do estado brasileiro escolhido: ");
         int codigo = scanner.nextInt();
-        EstadosBrasil estadoBrasil = buscarEstadoBrasileiroEscolhido(codigo);
+        EstadosDoBrasil estadoBrasil = buscarEstadoBrasileiroEscolhido(codigo);
         Endereco endereco;
         if (complemento==null){
             endereco = new Endereco(cep,logradouro,numero,bairro,cidade,estadoBrasil);
@@ -107,7 +107,7 @@ public class CadastrarCliente {
         imprimirSiglaDosEstadosBrasileiros();
         System.out.print("Digite o código do estado brasileiro escolhido: ");
         int codigo = scanner.nextInt();
-        EstadosBrasil estadoBrasil = buscarEstadoBrasileiroEscolhido(codigo);
+        EstadosDoBrasil estadoBrasil = buscarEstadoBrasileiroEscolhido(codigo);
         Endereco endereco;
         if (complemento==null){
             endereco = new Endereco(cep,logradouro,numero,bairro,cidade,estadoBrasil);
