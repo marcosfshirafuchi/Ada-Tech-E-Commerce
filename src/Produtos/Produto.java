@@ -1,14 +1,16 @@
 package Produtos;
 
+import Produtos.Categorias.CategoriaProduto;
+
 public class Produto {
     private int id;
     private String nome;
-    private String categoria;
+    private CategoriaProduto categoria;
     private double valorDeProduto;
     private double valorDeVenda;
     private double desconto;
 
-    public Produto(int id, String nome, String categoria, double valorDeProduto, double valorDeVenda, double desconto) {
+    public Produto(int id, String nome, CategoriaProduto categoria, double valorDeProduto, double valorDeVenda, double desconto) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
@@ -29,7 +31,7 @@ public class Produto {
         this.nome = nome;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(CategoriaProduto categoria) {
         this.categoria = categoria;
     }
 

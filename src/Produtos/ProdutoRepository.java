@@ -1,5 +1,7 @@
 package Produtos;
 
+import Produtos.Categorias.CategoriaProduto;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class ProdutoRepository {
         }
     }
 
-    public static void atualizarProduto(int id, String novoNome, String novaCategoria, double novoValorDeVenda, double novoDesconto) {
+    public static void atualizarProduto(int id, String novoNome, CategoriaProduto novaCategoria, double novoValorDeVenda, double novoDesconto) {
         for (Produto produto : listaProdutos) {
             if(produto.getId() == id) {
                 produto.setNome(novoNome);
