@@ -30,7 +30,7 @@ public enum EstadosDoBrasil {
     TOCANTINS("TO");
 
     private final String sigla;
-    EstadoBrasil(String sigla) {
+    EstadosDoBrasil(String sigla) {
         this.sigla = sigla;
     }
 

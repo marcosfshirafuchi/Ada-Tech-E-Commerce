@@ -53,7 +53,7 @@ public class ValidaCNPJ {
                 dig14 = '0';
             else dig14 = (char) ((11 - r) + 48);
 
-// Verifica se os dígitos calculados conferem com os dígitos informados.
+            // Verifica se os dígitos calculados conferem com os dígitos informados.
             if ((dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13)))
                 return (true);
             else return (false);
@@ -63,7 +63,7 @@ public class ValidaCNPJ {
     }
 
     public static String imprimeCNPJ(String CNPJ) {
-// máscara do CNPJ: 99.999.999.9999-99
+        // máscara do CNPJ: 99.999.999.9999-99
         return (CNPJ.substring(0, 2) + "." + CNPJ.substring(2, 5) + "." +
                 CNPJ.substring(5, 8) + "." + CNPJ.substring(8, 12) + "-" +
                 CNPJ.substring(12, 14));
