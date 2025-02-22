@@ -38,7 +38,7 @@
 
 ## Diagrama de classes
 <p align = center>
-<a href="https://ibb.co/NnJ6ZLg9"><img src="https://i.ibb.co/FqybgBk5/Diagrama-de-classe-do-E-commerce-vers-o-03.png" alt="Diagrama-de-classe-do-E-commerce-vers-o-03" border="0"></a>
+<a href="https://ibb.co/5hQ4XWwd"><img src="https://i.ibb.co/v4NqCxRb/Diagrama-de-classe-do-E-commerce-vers-o-04.png" alt="Diagrama-de-classe-do-E-commerce-vers-o-04" border="0"></a>
 </p>
 
 ## Sites que geram CPFs e CNPJs para testar
