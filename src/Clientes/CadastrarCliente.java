@@ -7,6 +7,7 @@ import static Clientes.ConsultaCEP.obterEndereco;
 import static Clientes.ValidaTelefone.validarTelefone;
 
 public class CadastrarCliente {
+    private static int cont = 1;
     public static PessoaFisica cadastrarPessoaFisica() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("**********Cadastro de Pessoa Física**********");
@@ -61,7 +62,7 @@ public class CadastrarCliente {
                     System.out.println("Opção incorreta:");
             }
         } while (!(opcao >= 1 && opcao <= 2));
-        PessoaFisica pessoaFisica = new PessoaFisica(nome, cpf, endereco, telefone, TipoDeCliente.PESSOA_FISICA.getTipoDeCliente());
+        PessoaFisica pessoaFisica = new PessoaFisica(cont++,nome, cpf, endereco, telefone, TipoDeCliente.PESSOA_FISICA.getTipoDeCliente());
         return pessoaFisica;
     }
 
@@ -118,8 +119,7 @@ public class CadastrarCliente {
                     System.out.println("Opção incorreta:");
             }
         } while (!(opcao >= 1 && opcao <= 2));
-        scanner.nextLine();
-        PessoaJuridica pessoaJuridica = new PessoaJuridica(nome, cnpj, endereco, telefone, TipoDeCliente.PESSOA_JURIDICA.getTipoDeCliente());
+        PessoaJuridica pessoaJuridica = new PessoaJuridica(cont++,nome, cnpj, endereco, telefone, TipoDeCliente.PESSOA_JURIDICA.getTipoDeCliente());
         return pessoaJuridica;
     }
 }

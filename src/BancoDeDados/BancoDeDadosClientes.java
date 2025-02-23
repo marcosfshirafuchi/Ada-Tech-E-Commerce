@@ -21,6 +21,7 @@ public class BancoDeDadosClientes {
 
             if (Objects.equals(clienteDisponivel.getTipoDeCliente(), "Pessoa Física")) {
                 clienteEncontrado = new PessoaFisica(
+                        clienteDisponivel.getIdCliente(),
                         clienteDisponivel.getNome(),
                         clienteDisponivel.getNumeroDoDocumento(),
                         clienteDisponivel.getEndereco(),
@@ -29,6 +30,7 @@ public class BancoDeDadosClientes {
                 );
             } else {
                 clienteEncontrado = new PessoaJuridica(
+                        clienteDisponivel.getIdCliente(),
                         clienteDisponivel.getNome(),
                         clienteDisponivel.getNumeroDoDocumento(),
                         clienteDisponivel.getEndereco(),

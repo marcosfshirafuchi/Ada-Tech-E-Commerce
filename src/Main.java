@@ -15,9 +15,9 @@ public class Main {
         while(loop) {
             System.out.println("Escolha o tipo de serviço que deseja executar: \n");
 
-            System.out.println("1 - Cadastro de Cliente");
-            System.out.println("2 - Cadastro de Produto");
-            System.out.println("3 - Cadastro de Pedido");
+            System.out.println("1 - Menu de Cliente");
+            System.out.println("2 - Menu de Produto");
+            System.out.println("3 - Menu de Pedido");
             System.out.println("4 - Sair do sistema \n");
 
             System.out.print("Digite a opção desejada: ");
@@ -36,7 +36,6 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("**********Lista de clientes cadastrados**********");
-                    listarClientes();
                     System.out.println("Saindo do sistema.");
                     loop = false;
                     break;

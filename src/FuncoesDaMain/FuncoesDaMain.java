@@ -8,8 +8,8 @@ import Clientes.PessoaJuridica;
 import java.util.Scanner;
 
 import static BancoDeDados.BancoDeDadosClientes.cadastrarClientes;
+import static BancoDeDados.BancoDeDadosClientes.listarClientes;
 import static Clientes.CadastrarCliente.cadastrarPessoaJuridica;
-//import static Clientes.CadastrarCliente2.cadastrarPessoaJuridica;
 
 public class FuncoesDaMain {
     static int opcaoCliente;
@@ -20,9 +20,10 @@ public class FuncoesDaMain {
 
         while(loop) {
             System.out.println("\nEscolha a opção do cliente:\n");
-            System.out.println("1 - Pessoa Física");
-            System.out.println("2 - Pessoa Juridica");
-            System.out.println("3 - Voltar ao Menu Principal\n");
+            System.out.println("1 - Cadastro de Pessoa Física");
+            System.out.println("2 - Cadastro de Pessoa Juridica");
+            System.out.println("3 - Imprimir lista de Clientes");
+            System.out.println("4 - Voltar ao Menu Principal\n");
             System.out.print("Digite a opção do cliente desejada: ");
 
             opcaoCliente = scanner.nextInt();
@@ -41,6 +42,10 @@ public class FuncoesDaMain {
                     cadastrarClientes(pessoaJuridica);
                     break;
                 case 3:
+                    System.out.println("Lista de clientes cadastrados:");
+                    listarClientes();
+                    break;
+                case 4:
                     System.out.println("\n------------------------------");
                     System.out.println("Voltando ao Menu Principal.");
                     System.out.println("------------------------------\n");

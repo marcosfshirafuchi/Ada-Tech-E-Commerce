@@ -1,6 +1,8 @@
 package Clientes;
 
-public abstract class Cliente {
+public abstract class Cliente implements NumeroDeDocumentoFormatado {
+    //private static int cont = 1;
+    private int idCliente;
     private String nome;
     private String numeroDoDocumento;
     private Endereco endereco;
@@ -10,12 +12,22 @@ public abstract class Cliente {
     public Cliente(){
 
     }
-    public Cliente(String nome, String documento, Endereco endereco, String telefone, String tipoDeCliente) {
+
+    public Cliente(int idCliente, String nome, String numeroDoDocumento, Endereco endereco, String telefone, String tipoDeCliente) {
+        this.idCliente = idCliente;
         this.nome = nome;
-        this.numeroDoDocumento = documento;
+        this.numeroDoDocumento = formatarNumeroDeDocumentoFormatado(numeroDoDocumento);
         this.endereco = endereco;
         this.telefone = telefone;
         this.tipoDeCliente = tipoDeCliente;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNome() {
@@ -61,7 +73,8 @@ public abstract class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "nome='" + nome + '\'' +
+                "idCliente=" + idCliente +
+                ", nome='" + nome + '\'' +
                 ", numeroDoDocumento='" + numeroDoDocumento + '\'' +
                 ", endereco=" + endereco +
                 ", telefone='" + telefone + '\'' +
