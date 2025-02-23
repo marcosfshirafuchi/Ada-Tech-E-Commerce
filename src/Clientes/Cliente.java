@@ -10,7 +10,7 @@ public abstract class Cliente {
     public Cliente(){
 
     }
-    public Cliente(String nome, String documento, Endereco endereco, String telefone,String tipoDeCliente) {
+    public Cliente(String nome, String documento, Endereco endereco, String telefone, String tipoDeCliente) {
         this.nome = nome;
         this.numeroDoDocumento = documento;
         this.endereco = endereco;
@@ -62,7 +62,7 @@ public abstract class Cliente {
     public String toString() {
         return "Cliente{" +
                 "nome='" + nome + '\'' +
-                ", documento='" + numeroDoDocumento + '\'' +
+                ", numeroDoDocumento='" + numeroDoDocumento + '\'' +
                 ", endereco=" + endereco +
                 ", telefone='" + telefone + '\'' +
                 ", tipoDeCliente='" + tipoDeCliente + '\'' +

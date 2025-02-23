@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import static BancoDeDados.BancoDeDadosClientes.listarClientes;
 import static FuncoesDaMain.FuncoesDaMain.*;
 
 public class Main {
@@ -26,7 +27,6 @@ public class Main {
                 case 1:
                     System.out.println("");
                     escolherCadastroCliente();
-
                     break;
                 case 2:
                     escolherCadastroProduto();
@@ -35,6 +35,8 @@ public class Main {
                     escolherCadastroPedido();
                     break;
                 case 4:
+                    System.out.println("**********Lista de clientes cadastrados**********");
+                    listarClientes();
                     System.out.println("Saindo do sistema.");
                     loop = false;
                     break;

@@ -1,5 +1,6 @@
 package FuncoesDaMain;
 
+//import Clientes.CadastrarCliente;
 import Clientes.CadastrarCliente;
 import Clientes.PessoaFisica;
 import Clientes.PessoaJuridica;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 
 import static BancoDeDados.BancoDeDadosClientes.cadastrarClientes;
 import static Clientes.CadastrarCliente.cadastrarPessoaJuridica;
+//import static Clientes.CadastrarCliente2.cadastrarPessoaJuridica;
 
 public class FuncoesDaMain {
     static int opcaoCliente;

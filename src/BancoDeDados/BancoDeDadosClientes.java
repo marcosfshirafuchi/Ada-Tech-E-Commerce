@@ -39,4 +39,10 @@ public class BancoDeDadosClientes {
         }
         return clienteEncontrado;
     }
+
+    public static void listarClientes(){
+        for (Cliente clientesCadastrados: listaDeClientes){
+            System.out.println(clientesCadastrados);
+        }
+    }
 }
