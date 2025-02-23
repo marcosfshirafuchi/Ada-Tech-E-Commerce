@@ -41,7 +41,7 @@
 <a href="https://ibb.co/5hQ4XWwd"><img src="https://i.ibb.co/v4NqCxRb/Diagrama-de-classe-do-E-commerce-vers-o-04.png" alt="Diagrama-de-classe-do-E-commerce-vers-o-04" border="0"></a>
 </p>
 
-## Sites que geram CPFs e CNPJs para testar
+## Sites que geram CPFs, CNPJs, CEPs e numeros para testar
 
 ### Gerador de CPF
 
@@ -50,4 +50,20 @@ https://www.4devs.com.br/gerador_de_cpf
 ### Gerador de CNPJ
 
 https://www.4devs.com.br/gerador_de_cnpj
+
+### Gerador de CEP
+
+https://geradornv.com.br/gerador-cep/
+
+### Buscar/Validar CEP
+
+https://geradornv.com.br/buscar-validar-cep/
+
+### Validador de número de telefone
+
+https://www.telvalidator.com/?lang=pt
+
+### Gerador de Número de Telefone
+
+https://geradornv.com.br/gerador-telefone/
 
