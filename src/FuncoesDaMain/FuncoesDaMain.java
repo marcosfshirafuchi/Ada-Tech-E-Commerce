@@ -62,7 +62,43 @@ public class FuncoesDaMain {
     }
 
     public static void escolherCadastroProduto(){
+        Scanner scanner = new Scanner(System.in);
+        boolean loop = true;
 
+        while(loop) {
+            System.out.println("\nEscolha a opção do produto:\n");
+            System.out.println("1 - Cadastro de produto");
+            System.out.println("2 - Imprimir lista de Produtos");
+            System.out.println("3 - Voltar ao Menu Principal\n");
+            System.out.print("Digite a opção do cliente desejada: ");
+
+            opcaoCliente = scanner.nextInt();
+
+            PessoaFisica pessoafisica = new PessoaFisica();
+            PessoaJuridica pessoaJuridica = new PessoaJuridica();
+            switch (opcaoCliente){
+                case 1:
+                    System.out.print("\n");
+                   //Coloca a função cadastro de produto
+                    break;
+                case 2:
+                    System.out.print("\n");
+                    System.out.println("Lista de clientes cadastrados:");
+                    //Coloca a função imprime a lista de produtos
+                    break;
+                case 3:
+                    System.out.println("\n------------------------------");
+                    System.out.println("Voltando ao Menu Principal.");
+                    System.out.println("------------------------------\n");
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("\n------------------------------");
+                    System.out.println("Digite uma opção válida.");
+                    System.out.println("------------------------------\n");
+
+            }
+        }
     }
 
     public static void escolherCadastroPedido(){
