@@ -43,6 +43,10 @@ public class Endereco {
         return numero;
     }
 
+    public String getCep() {
+        return cep;
+    }
+
     public void setNumero(String numero) {
         this.numero = numero;
     }

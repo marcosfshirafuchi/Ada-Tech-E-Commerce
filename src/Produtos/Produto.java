@@ -3,6 +3,7 @@ package Produtos;
 import Produtos.Categorias.CategoriaProduto;
 
 public class Produto {
+    private static int contadorId = 1;
     private int id;
     private String nome;
     private CategoriaProduto categoria;
@@ -10,8 +11,8 @@ public class Produto {
     private double valorDeVenda;
     private double desconto;
 
-    public Produto(int id, String nome, CategoriaProduto categoria, double valorDeProduto, double valorDeVenda, double desconto) {
-        this.id = id;
+    public Produto(String nome, CategoriaProduto categoria, double valorDeProduto, double valorDeVenda, double desconto) {
+        this.id = contadorId++;
         this.nome = nome;
         this.categoria = categoria;
         this.valorDeProduto = valorDeProduto;
@@ -23,8 +24,16 @@ public class Produto {
         return nome;
     }
 
+    public double getValorDeProduto() {
+        return valorDeProduto;
+    }
+
     public int getId() {
         return id;
+    }
+
+    public double getValorDeVenda() {
+        return valorDeVenda;
     }
 
     public void setNome(String nome) {

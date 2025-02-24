@@ -47,4 +47,13 @@ public class BancoDeDadosClientes {
             System.out.println(clientesCadastrados);
         }
     }
+
+    public static Cliente buscarClientePorId(int idCliente) {
+        for (Cliente cliente : listaDeClientes) {
+            if (cliente.getIdCliente() == idCliente) {
+                return cliente;
+            }
+        }
+        return null;
+    }
 }
