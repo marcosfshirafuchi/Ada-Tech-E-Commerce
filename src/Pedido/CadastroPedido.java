@@ -6,6 +6,7 @@ import Produtos.Produto;
 import Clientes.Cliente;
 
 import static BancoDeDados.BancoDeDadosClientes.*;
+import static Pedido.GerenciadorPedidos.criarPedido;
 import static Produtos.ProdutoRepository.*;
 
 public class CadastroPedido {
@@ -48,7 +49,7 @@ public class CadastroPedido {
                 adicionarProdutos = false;
             }
         }
-
+        criarPedido(pedido);
         return pedido;
     }
 }
