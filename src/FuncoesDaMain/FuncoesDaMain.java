@@ -1,9 +1,13 @@
 package FuncoesDaMain;
 
-//import Clientes.CadastrarCliente;
 import Clientes.CadastrarCliente;
 import Clientes.PessoaFisica;
 import Clientes.PessoaJuridica;
+import Pedido.CadastroPedido;
+import Produtos.CadastrarProduto;
+import Produtos.ProdutoRepository;
+import Pedido.Pedido;
+import Pedido.GerenciadorPedidos;
 
 import java.util.Scanner;
 
@@ -13,6 +17,9 @@ import static Clientes.CadastrarCliente.cadastrarPessoaJuridica;
 
 public class FuncoesDaMain {
     static int opcaoCliente;
+    static int opcaoProduto;
+    static int opcaoPedido;
+
     public static void escolherCadastroCliente() {
 
         Scanner scanner = new Scanner(System.in);
@@ -27,6 +34,7 @@ public class FuncoesDaMain {
             System.out.print("Digite a opção do cliente desejada: ");
 
             opcaoCliente = scanner.nextInt();
+            scanner.nextLine();
 
             PessoaFisica pessoafisica = new PessoaFisica();
             PessoaJuridica pessoaJuridica = new PessoaJuridica();
@@ -70,21 +78,19 @@ public class FuncoesDaMain {
             System.out.println("1 - Cadastro de produto");
             System.out.println("2 - Imprimir lista de Produtos");
             System.out.println("3 - Voltar ao Menu Principal\n");
-            System.out.print("Digite a opção do cliente desejada: ");
+            System.out.print("Digite a opção desejada: ");
 
-            opcaoCliente = scanner.nextInt();
+            opcaoProduto = scanner.nextInt();
+            scanner.nextLine();
 
-            PessoaFisica pessoafisica = new PessoaFisica();
-            PessoaJuridica pessoaJuridica = new PessoaJuridica();
-            switch (opcaoCliente){
+            switch (opcaoProduto){
                 case 1:
-                    System.out.print("\n");
-                   //Coloca a função cadastro de produto
+                    CadastrarProduto.cadastrarProduto();
                     break;
                 case 2:
                     System.out.print("\n");
-                    System.out.println("Lista de clientes cadastrados:");
-                    //Coloca a função imprime a lista de produtos
+                    System.out.println("Lista de produtos cadastrados:");
+                    ProdutoRepository.listarProdutos();
                     break;
                 case 3:
                     System.out.println("\n------------------------------");
@@ -102,6 +108,43 @@ public class FuncoesDaMain {
     }
 
     public static void escolherCadastroPedido(){
+        Scanner scanner = new Scanner(System.in);
+        boolean loop = true;
 
+        while(loop) {
+            System.out.println("Escolha a opção do pedido:\n");
+            System.out.println("1 - Cadastro de pedido");
+            System.out.println("2 - Imprimir lista de Pedidos");
+            System.out.println("3 - Voltar ao Menu Principal\n");
+            System.out.println("Digite a opção desejada: ");
+
+            opcaoPedido = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (opcaoPedido){
+                case 1:
+                    Pedido pedido = CadastroPedido.cadastrarPedido();
+                    if(pedido != null){
+                        System.out.println("Pedido cadastrado com sucesso!");
+                    }
+                    break;
+                case 2:
+                    System.out.print("\n");
+                    System.out.println("Lista de pedidos cadastrados:");
+                    GerenciadorPedidos gerenciadorPedidos = new GerenciadorPedidos();
+                    gerenciadorPedidos.listarPedidos();
+                    break;
+                case 3:
+                    System.out.println("\n------------------------------");
+                    System.out.println("Voltando ao Menu Principal.");
+                    System.out.println("------------------------------\n");
+                    loop = false;
+                    break;
+                default:
+                    System.out.println("\n------------------------------");
+                    System.out.println("Digite uma opção válida.");
+                    System.out.println("------------------------------\n");
+            }
+        }
     }
 }

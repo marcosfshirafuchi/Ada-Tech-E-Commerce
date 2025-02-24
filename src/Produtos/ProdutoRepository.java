@@ -6,17 +6,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoRepository {
-    public static List<Produto> listaProdutos = new ArrayList<Produto>();
-
-    public static void cadastrarProduto(Produto produto) {
-        listaProdutos.add(produto);
-        System.out.println("Produto " + produto.getNome() +" cadastrado com sucesso!");
-    }
+    public static List<Produto> listaProdutos = new ArrayList<>();
 
     public static void listarProdutos() {
-        for (Produto produto : listaProdutos) {
-            System.out.println(produto);
+        if (listaProdutos.isEmpty()){
+            System.out.println("Nenhum produto cadastrado");
+        } else{
+            for (Produto produto : listaProdutos) {
+                System.out.println(produto);
+            }
         }
+    }
+
+    public static Produto buscarProduto(int id) {
+        if (listaProdutos.isEmpty()) {
+            System.out.println("Nenhum produto cadastrado");
+        } else {
+            for (Produto produto : listaProdutos) {
+                if (produto.getId() == id) {
+                    return produto;
+                }
+            }
+        }
+        return null;
     }
 
     public static void atualizarProduto(int id, String novoNome, CategoriaProduto novaCategoria, double novoValorDeVenda, double novoDesconto) {
