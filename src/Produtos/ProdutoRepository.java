@@ -1,7 +1,5 @@
 package Produtos;
 
-import Produtos.Categorias.CategoriaProduto;
-
 import java.util.ArrayList;
 import java.util.List;
 
