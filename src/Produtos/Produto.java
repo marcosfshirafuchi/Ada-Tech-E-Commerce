@@ -24,17 +24,15 @@ public class Produto {
         return nome;
     }
 
-    public double getValorDeProduto() {
-        return valorDeProduto;
-    }
+    public double getValorDeProduto() {return valorDeProduto;}
 
-    public int getId() {
-        return id;
-    }
+    public int getId() {return id;}
 
     public double getValorDeVenda() {
         return valorDeVenda;
     }
+
+    public double getDesconto() {return desconto;}
 
     public void setNome(String nome) {
         this.nome = nome;
