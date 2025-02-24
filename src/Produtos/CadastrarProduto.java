@@ -1,9 +1,6 @@
 package Produtos;
 
-import Produtos.Categorias.CategoriaProduto;
 import Produtos.Categorias.Eletronicos;
-import Produtos.Categorias.Livros;
-import Produtos.Categorias.Roupas;
 
 import java.util.Scanner;
 
