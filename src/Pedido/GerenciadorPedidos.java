@@ -1,18 +1,13 @@
 package Pedido;
 
-import Clientes.Cliente;
-import Frete.CalculadoraFrete;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class GerenciadorPedidos {
-    private List<Pedido> pedidos = new ArrayList<Pedido>();
+    private static List<Pedido> pedidos = new ArrayList<Pedido>();
 
-    public Pedido criarPedido(int id, Cliente cliente, String remetente, CalculadoraFrete calculadoraFrete) {
-        Pedido pedido = new Pedido(cliente);
+    public static void criarPedido(Pedido pedido) {
         pedidos.add(pedido);
-        return pedido;
     }
 
     public void alterarStatus(Pedido pedido, StatusPedido novoStatus) {

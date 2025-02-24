@@ -54,6 +54,6 @@ public class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" + "id = " + id + ", nome = " + nome + ", categoria = " + categoria + '}';
+        return "Produto{" + "id = " + id + ", nome = " + nome + ", categoria = " + categoria.getNomeCategoria() + '}';
     }
 }

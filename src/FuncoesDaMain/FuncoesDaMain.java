@@ -108,6 +108,8 @@ public class FuncoesDaMain {
     }
 
     public static void escolherCadastroPedido(){
+        GerenciadorPedidos gerenciadorPedidos = new GerenciadorPedidos();
+
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
 
@@ -131,7 +133,6 @@ public class FuncoesDaMain {
                 case 2:
                     System.out.print("\n");
                     System.out.println("Lista de pedidos cadastrados:");
-                    GerenciadorPedidos gerenciadorPedidos = new GerenciadorPedidos();
                     gerenciadorPedidos.listarPedidos();
                     break;
                 case 3:
