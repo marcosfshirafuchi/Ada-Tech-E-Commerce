@@ -17,7 +17,7 @@ public class Pedido {
     private double valorTotal;
     private StatusPedido status;
 
-    public Pedido(Cliente cliente) {
+    public Pedido(Cliente cliente, LocalDateTime dataCriacao, List<ItemPedido> itens, double valorTotal) {
         this.id = gerarId();
         this.cliente = cliente;
         this.dataCriacao = LocalDateTime.now();
@@ -97,7 +97,8 @@ public class Pedido {
 
     public void calcularTotal(){
         for (ItemPedido item : itens){
-            valorTotal += item.calcularSubtotal();
+           valorTotal = 0.0;
+           valorTotal += item.calcularSubtotal();
         }
     }
 

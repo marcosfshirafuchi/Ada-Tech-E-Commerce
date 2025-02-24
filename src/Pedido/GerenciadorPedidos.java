@@ -6,7 +6,7 @@ import java.util.List;
 public class GerenciadorPedidos {
     private static List<Pedido> pedidos = new ArrayList<Pedido>();
 
-    public static void criarPedido(Pedido pedido) {
+    public static void adicionarPedido(Pedido pedido) {
         pedidos.add(pedido);
     }
 

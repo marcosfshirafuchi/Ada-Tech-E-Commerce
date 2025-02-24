@@ -1,12 +1,14 @@
 package Pedido;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Produtos.Produto;
 import Clientes.Cliente;
 
 import static BancoDeDados.BancoDeDadosClientes.*;
-import static Pedido.GerenciadorPedidos.criarPedido;
+import static Pedido.GerenciadorPedidos.adicionarPedido;
 import static Produtos.ProdutoRepository.*;
 
 public class CadastroPedido {
@@ -21,13 +23,13 @@ public class CadastroPedido {
 
         Cliente cliente = buscarClientePorId(idCliente);
 
-        Pedido pedido = new Pedido(cliente);
+        Pedido pedido = new Pedido(cliente, LocalDateTime.now(), new ArrayList<>(), 0.0);
 
         System.out.println("Cadastro de Pedido para " + cliente.getNome() + "\n");
 
         boolean adicionarProdutos = true;
         while (adicionarProdutos) {
-            System.out.print("Escolha ID do produto a ser adicionado ao pedido: ");
+            System.out.print("Escolha o produto para adicionar ao pedido: ");
             System.out.println();
             listarProdutos();
             System.out.println("Digite o ID do produto: ");
@@ -35,7 +37,7 @@ public class CadastroPedido {
 
             Produto produto = buscarProduto(idProduto);
             if (produto != null) {
-                System.out.print("Digite a quantidade: ");
+                System.out.print("Digite a quantidade desejada: ");
                 int quantidade = scanner.nextInt();
                 pedido.adicionarItem(produto, quantidade);
                 System.out.println("Produto " + produto.getNome() + " adicionado ao pedido.");
@@ -49,7 +51,7 @@ public class CadastroPedido {
                 adicionarProdutos = false;
             }
         }
-        criarPedido(pedido);
+        adicionarPedido(pedido);
         return pedido;
     }
 }
