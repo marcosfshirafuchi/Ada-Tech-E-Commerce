@@ -4,10 +4,11 @@ import Clientes.CadastrarCliente;
 import Clientes.PessoaFisica;
 import Clientes.PessoaJuridica;
 import Pedido.CadastroPedido;
-import Produtos.CadastrarProduto;
+import Produtos.CadastroProduto;
 import Produtos.ProdutoRepository;
 import Pedido.Pedido;
 import Pedido.GerenciadorPedidos;
+import Produtos.ProdutoService;
 
 import java.util.Scanner;
 
@@ -77,15 +78,17 @@ public class FuncoesDaMain {
             System.out.println("\nEscolha a opção do produto:\n");
             System.out.println("1 - Cadastro de produto");
             System.out.println("2 - Imprimir lista de Produtos");
-            System.out.println("3 - Voltar ao Menu Principal\n");
+            System.out.println("3 - Atualizar Produto\n");
+            System.out.println("4 - Voltar ao Menu Principal\n");
             System.out.print("Digite a opção desejada: ");
 
             opcaoProduto = scanner.nextInt();
             scanner.nextLine();
 
+            ProdutoService produtoService = new ProdutoService();
             switch (opcaoProduto){
                 case 1:
-                    CadastrarProduto.cadastrarProduto();
+                    CadastroProduto.cadastrarProduto();
                     break;
                 case 2:
                     System.out.print("\n");
@@ -93,6 +96,25 @@ public class FuncoesDaMain {
                     ProdutoRepository.listarProdutos();
                     break;
                 case 3:
+                    System.out.println("Digite o ID do produto a ser atualizado:");
+                    int idProduto = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.println("Digite o novo nome");
+                    String novoNome = scanner.nextLine();
+
+                    System.out.println("Digite a nova categoria:");
+                    String novaCategoria = scanner.nextLine();
+
+                    System.out.println("Digite o novo preço de venda:");
+                    double novoValorDeVenda = scanner.nextDouble();
+
+                    System.out.println("Digite o novo desconto:");
+                    double novoDesconto = scanner.nextDouble();
+                    scanner.nextLine();
+
+                    produtoService.atualizarProduto(idProduto, novoNome, novaCategoria, novoValorDeVenda, novoDesconto);
+                case 4:
                     System.out.println("\n------------------------------");
                     System.out.println("Voltando ao Menu Principal.");
                     System.out.println("------------------------------\n");
