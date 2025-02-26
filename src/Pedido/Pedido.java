@@ -42,6 +42,10 @@ public class Pedido {
         return status;
     }
 
+    public List<ItemPedido> getItens(){
+        return itens;
+    }
+
     public void setStatus(StatusPedido statusPedido) {
         this.status = statusPedido;
     }
@@ -106,7 +110,18 @@ public class Pedido {
         return calculadoraFrete.calcularFrete(cliente);
     }
 
-    public List<ItemPedido> getItens(){
-        return itens;
+    public boolean podeFinalizar(){
+        return status == StatusPedido.ABERTO && !itens.isEmpty() && valorTotal > 0;
     }
+
+    public void finalizarPedido(){
+        if (podeFinalizar()){
+            status = StatusPedido.AGUARDANDO_PAGAMENTO;
+            enviarNotificacao("Pedido aguardando pagamento.");
+        }
+        else{
+            System.out.println("Não foi possível finalizar o pedido. Verifique se o pedido está aberto, se há itens e se o valor total é maior que zero.");
+        }
+    }
+
 }
