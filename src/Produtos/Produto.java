@@ -32,6 +32,8 @@ public abstract class Produto {
 
     public double getDesconto() {return desconto;}
 
+    public String getCategoria() {return categoria;}
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -50,6 +52,6 @@ public abstract class Produto {
 
     @Override
     public String toString() {
-        return "Produto{" + "id = " + id + ", nome = " + nome + ", categoria = " + categoria + '}';
+        return "Produto{" + "id = " + id + ", nome = " + nome + ", categoria = " + categoria + ", valorDeProduto = " + valorDeProduto + ", valorDeVenda = " + valorDeVenda + ", desconto = " + desconto + '}';
     }
 }

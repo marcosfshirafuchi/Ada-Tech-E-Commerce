@@ -18,6 +18,7 @@ import static Clientes.CadastrarCliente.cadastrarPessoaJuridica;
 import static Clientes.ClienteService.atualizarDadosCliente;
 import static Produtos.CadastroProduto.cadastrarProduto;
 import static Produtos.ProdutoRepository.listarProdutos;
+import static Produtos.ProdutoService.atualizarProduto;
 
 public class FuncoesDaMain {
     static int opcaoCliente;
@@ -107,22 +108,7 @@ public class FuncoesDaMain {
                 case 3:
                     System.out.println("Digite o ID do produto a ser atualizado:");
                     int idProduto = scanner.nextInt();
-                    scanner.nextLine();
-
-                    System.out.println("Digite o novo nome");
-                    String novoNome = scanner.nextLine();
-
-                    System.out.println("Digite a nova categoria:");
-                    String novaCategoria = scanner.nextLine();
-
-                    System.out.println("Digite o novo preço de venda:");
-                    double novoValorDeVenda = scanner.nextDouble();
-
-                    System.out.println("Digite o novo desconto:");
-                    double novoDesconto = scanner.nextDouble();
-                    scanner.nextLine();
-
-                    produtoService.atualizarProduto(idProduto, novoNome, novaCategoria, novoValorDeVenda, novoDesconto);
+                    atualizarProduto(idProduto);
                 case 4:
                     System.out.println("\n------------------------------");
                     System.out.println("Voltando ao Menu Principal.");

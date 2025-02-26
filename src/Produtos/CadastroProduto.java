@@ -9,23 +9,45 @@ public class CadastroProduto {
         System.out.println("Digite o nome do produto:");
         String nome = scanner.nextLine();
 
-        System.out.println("Digite a categoria do produto:");
-        String categoria = scanner.nextLine();
+        String categoria;
+        do {
+            System.out.println("Digite a categoria do produto (Eletronicos, Livros, Roupas):");
+            categoria = scanner.nextLine().toLowerCase();
+            if (!CategoriaFactory.isCategoriaValida(categoria)) {
+                System.out.println("Categoria inválida! Por favor, escolha entre: Eletronicos, Livros, Roupas");
+            }
+        } while (!CategoriaFactory.isCategoriaValida(categoria));
 
-        System.out.println("Digite o preço de custo do produto:");
-        double valorDeProduto = scanner.nextDouble();
+        double valorDeProduto;
+        do {
+            System.out.println("Digite o preço de custo do produto:");
+            valorDeProduto = scanner.nextDouble();
+            if (valorDeProduto <= 0) {
+                System.out.println("Preço de custo deve ser um valor positivo.");
+            }
+        } while (valorDeProduto <= 0);
 
-        System.out.println("Digite o preço de venda do produto:");
-        double valorDeVenda = scanner.nextDouble();
+        double valorDeVenda;
+        do {
+            System.out.println("Digite o preço de venda do produto:");
+            valorDeVenda = scanner.nextDouble();
+            if (valorDeVenda <= valorDeProduto) {
+                System.out.println("Preço de venda deve ser superior ao preço de custo.");
+            }
+        } while (valorDeVenda <= valorDeProduto);
 
-        System.out.println("Digite o desconto do produto:");
-        double desconto = scanner.nextDouble();
-        scanner.nextLine();
-
+        double desconto;
+        do {
+            System.out.println("Digite o desconto do produto (0 a 100):");
+            desconto = scanner.nextDouble();
+            if (desconto < 0 || desconto > 100) {
+                System.out.println("Desconto deve ser entre 0% e 100%.");
+            }
+        } while (desconto < 0 || desconto > 100);
 
         Produto produto = CategoriaFactory.criarProduto(nome, categoria, valorDeProduto, valorDeVenda, desconto);
         ProdutoRepository.adicionarProduto(produto);
+        System.out.println("Produto cadastrado com sucesso!");
         return produto;
     }
-
 }
