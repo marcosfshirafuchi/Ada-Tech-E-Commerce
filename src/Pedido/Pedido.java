@@ -2,6 +2,7 @@ package Pedido;
 
 import Clientes.Cliente;
 import Frete.CalculadoraFrete;
+import Pedido.Notificacao.Notificacao;
 import Produtos.Produto;
 
 import java.time.LocalDateTime;
@@ -40,6 +41,10 @@ public class Pedido {
 
     public StatusPedido getStatus() {
         return status;
+    }
+
+    public List<ItemPedido> getItens(){
+        return itens;
     }
 
     public void setStatus(StatusPedido statusPedido) {
@@ -106,7 +111,38 @@ public class Pedido {
         return calculadoraFrete.calcularFrete(cliente);
     }
 
-    public List<ItemPedido> getItens(){
-        return itens;
+    public boolean podeFinalizar(){
+        return status == StatusPedido.ABERTO && !itens.isEmpty() && valorTotal > 0;
     }
+
+    public void finalizarPedido(){
+        if (podeFinalizar()){
+            status = StatusPedido.AGUARDANDO_PAGAMENTO;
+            Notificacao.enviarNotificacao("Pedido aguardando pagamento. Total: R$ " + valorTotal);
+        }
+        else{
+            System.out.println("Não foi possível finalizar o pedido. Verifique se o pedido está aberto, se há itens e se o valor total é maior que zero.");
+        }
+    }
+
+    public void pagar(){
+        if (status == StatusPedido.AGUARDANDO_PAGAMENTO){
+            status = StatusPedido.PAGO;
+            Notificacao.enviarNotificacao("Pedido pago. Total: R$ " + valorTotal);
+        }
+        else{
+            System.out.println("Não foi possível pagar o pedido. Verifique se o pedido está aguardando pagamento.");
+        }
+    }
+
+    public void entregar(){
+        if (status == StatusPedido.PAGO){
+            status = StatusPedido.FINALIZADO;
+            Notificacao.enviarNotificacao("Pedido entregue.");
+        }
+        else{
+            System.out.println("Não foi possível entregar o pedido. Verifique se o pedido está pago.");
+        }
+    }
+
 }
