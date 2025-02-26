@@ -15,6 +15,9 @@ import java.util.Scanner;
 import static BancoDeDados.BancoDeDadosClientes.cadastrarClientes;
 import static BancoDeDados.BancoDeDadosClientes.listarClientes;
 import static Clientes.CadastrarCliente.cadastrarPessoaJuridica;
+import static Clientes.ClienteService.atualizarDadosCliente;
+import static Produtos.CadastroProduto.cadastrarProduto;
+import static Produtos.ProdutoRepository.listarProdutos;
 
 public class FuncoesDaMain {
     static int opcaoCliente;
@@ -31,7 +34,8 @@ public class FuncoesDaMain {
             System.out.println("1 - Cadastro de Pessoa Física");
             System.out.println("2 - Cadastro de Pessoa Juridica");
             System.out.println("3 - Imprimir lista de Clientes");
-            System.out.println("4 - Voltar ao Menu Principal\n");
+            System.out.println("4 - Atualizar Cliente");
+            System.out.println("5 - Voltar ao Menu Principal\n");
             System.out.print("Digite a opção do cliente desejada: ");
 
             opcaoCliente = scanner.nextInt();
@@ -55,6 +59,11 @@ public class FuncoesDaMain {
                     listarClientes();
                     break;
                 case 4:
+                    System.out.println("Digite o ID do cliente a ser atualizado:");
+                    int idCliente = scanner.nextInt();
+                    atualizarDadosCliente(idCliente);
+                    break;
+                case 5:
                     System.out.println("\n------------------------------");
                     System.out.println("Voltando ao Menu Principal.");
                     System.out.println("------------------------------\n");
@@ -78,7 +87,7 @@ public class FuncoesDaMain {
             System.out.println("\nEscolha a opção do produto:\n");
             System.out.println("1 - Cadastro de produto");
             System.out.println("2 - Imprimir lista de Produtos");
-            System.out.println("3 - Atualizar Produto\n");
+            System.out.println("3 - Atualizar Produto");
             System.out.println("4 - Voltar ao Menu Principal\n");
             System.out.print("Digite a opção desejada: ");
 
@@ -88,12 +97,12 @@ public class FuncoesDaMain {
             ProdutoService produtoService = new ProdutoService();
             switch (opcaoProduto){
                 case 1:
-                    CadastroProduto.cadastrarProduto();
+                    cadastrarProduto();
                     break;
                 case 2:
                     System.out.print("\n");
                     System.out.println("Lista de produtos cadastrados:");
-                    ProdutoRepository.listarProdutos();
+                    listarProdutos();
                     break;
                 case 3:
                     System.out.println("Digite o ID do produto a ser atualizado:");

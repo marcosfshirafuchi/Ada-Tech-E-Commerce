@@ -10,7 +10,7 @@ public class ProdutoRepository {
         return listaProdutos;
     }
 
-    public void listarProdutos() {
+    public static void listarProdutos() {
         if (listaProdutos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado");
         } else {
@@ -20,11 +20,11 @@ public class ProdutoRepository {
         }
     }
 
-    public void adicionarProduto(Produto produto) {
+    public static void adicionarProduto(Produto produto) {
         listaProdutos.add(produto);
     }
 
-    public Produto buscarProduto(int id) {
+    public static Produto buscarProduto(int id) {
         if (listaProdutos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado");
         } else {
