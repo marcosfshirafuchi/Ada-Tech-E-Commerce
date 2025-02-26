@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoRepository {
-    public static List<Produto> listaProdutos = new ArrayList<>();
+    private static List<Produto> listaProdutos = new ArrayList<>();
 
-    public static void listarProdutos() {
+    public static List<Produto> getListaProdutos() {
+        return listaProdutos;
+    }
+
+    public void listarProdutos() {
         if (listaProdutos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado");
         } else {
@@ -16,10 +20,18 @@ public class ProdutoRepository {
         }
     }
 
-    public static Produto buscarProduto(int id) {
-        for (Produto produto : listaProdutos) {
-            if (produto.getId() == id) {
-                return produto;
+    public void adicionarProduto(Produto produto) {
+        listaProdutos.add(produto);
+    }
+
+    public Produto buscarProduto(int id) {
+        if (listaProdutos.isEmpty()) {
+            System.out.println("Nenhum produto cadastrado");
+        } else {
+            for (Produto produto : listaProdutos) {
+                if (produto.getId() == id) {
+                    return produto;
+                }
             }
         }
         return null;
