@@ -24,7 +24,7 @@ public class CadastroProduto {
 
 
         Produto produto = CategoriaFactory.criarProduto(nome, categoria, valorDeProduto, valorDeVenda, desconto);
-        ProdutoRepository.listaProdutos.add(produto);
+        ProdutoRepository.adicionarProduto(produto);
         return produto;
     }
 

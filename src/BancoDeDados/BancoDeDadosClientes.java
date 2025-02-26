@@ -9,7 +9,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class BancoDeDadosClientes {
-    static List<Cliente> listaDeClientes = new ArrayList<>();
+
+    private static List<Cliente> listaDeClientes = new ArrayList<>();
+
+    public static List<Cliente> getListaDeClientes() {
+        return listaDeClientes;
+    }
+
     public static List<Cliente> cadastrarClientes(Cliente cliente) {
         listaDeClientes.add(cliente);
         return listaDeClientes;
