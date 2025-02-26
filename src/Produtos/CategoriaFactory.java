@@ -19,7 +19,7 @@ public class CategoriaFactory {
         return criarProdutoValido(nome, categoria, valorDeProduto, valorDeVenda, desconto);
     }
 
-    private static boolean isCategoriaValida(String categoria) {
+    protected static boolean isCategoriaValida(String categoria) {
         return categoria.equals("eletronicos") || categoria.equals("livros") || categoria.equals("roupas");
     }
 
