@@ -2,8 +2,6 @@ package Pedido;
 
 import Clientes.Cliente;
 import Frete.CalculadoraFrete;
-import Pedido.Notificacao.Notificacao;
-import Produtos.Produto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,7 +16,7 @@ public class Pedido {
     private double valorTotal;
     private StatusPedido status;
 
-    public Pedido(Cliente cliente, LocalDateTime dataCriacao, List<ItemPedido> itens, double valorTotal) {
+    public Pedido(Cliente cliente) {
         this.id = gerarId();
         this.cliente = cliente;
         this.dataCriacao = LocalDateTime.now();
@@ -27,7 +25,7 @@ public class Pedido {
         this.status = StatusPedido.ABERTO;
     }
 
-    public int gerarId(){
+    private int gerarId(){
         Random random = new Random();
         return random.nextInt(10000) + 1000;
     }
@@ -43,6 +41,14 @@ public class Pedido {
         return status;
     }
 
+    public LocalDateTime getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public double getValorTotal() {
+        return valorTotal;
+    }
+
     public List<ItemPedido> getItens(){
         return itens;
     }
@@ -51,53 +57,41 @@ public class Pedido {
         this.status = statusPedido;
     }
 
-    public void adicionarItem(Produto produto, int quantidade){
-        try{
-            if (status != StatusPedido.ABERTO){
+
+    public void adicionarItem(ItemPedido item) {
+            if (status != StatusPedido.ABERTO) {
                 throw new IllegalStateException("Não é possível adicionar itens em um pedido que não está aberto.");
             }
-            double valorDeVenda = produto.getValorDeVenda();
-            ItemPedido item = new ItemPedido(produto, quantidade, valorDeVenda);
+
             itens.add(item);
             calcularTotal();
-        } catch (IllegalStateException e){
-            System.out.println("Erro ao adicionar item: " + e.getMessage());
-        }
     }
 
-    public void removerItem(Produto produto){
-        try{
-            if (status != StatusPedido.ABERTO){
-                throw new IllegalStateException("Não é possível remover itens de um pedido que não está aberto.");
+    public void removerItem(ItemPedido item){
+        if (status != StatusPedido.ABERTO) {
+            throw new IllegalStateException("Não é possível remover itens de um pedido que não está aberto.");
             }
-            boolean removido = itens.removeIf(item -> item.getProduto().equals(produto));
-            if (removido){
+        if (itens.remove(item)) {
                 calcularTotal();
-            }
-            else{
-                throw new IllegalArgumentException("Produto não encontrado no pedido.");
-            }
-        } catch (IllegalStateException | IllegalArgumentException e){
-            System.out.println("Erro ao remover item: " + e.getMessage());
+                System.out.println("Item removido com sucesso.");
+        } else {
+                throw new IllegalArgumentException("Item não encontrado no pedido.");
         }
     }
 
-    public void alterarQuantidade(Produto produto, int novaQuantidade){
-        try{
-            if (status != StatusPedido.ABERTO){
+    public void alterarQuantidade(ItemPedido item, int novaQuantidade){
+            if (status != StatusPedido.ABERTO) {
                 throw new IllegalStateException("Não é possível alterar a quantidade de itens de um pedido que não está aberto.");
             }
-            for (ItemPedido item : itens){
-                if (item.getProduto().equals(produto)){
-                    item.setQuantidade(novaQuantidade);
+
+            for (ItemPedido i : itens){
+                if (i.equals(item)) {
+                    i.setQuantidade(novaQuantidade);
                     calcularTotal();
                     return;
                 }
             }
-            throw new IllegalArgumentException("\"Produto não encontrado no pedido.");
-        } catch (IllegalStateException | IllegalArgumentException e) {
-            System.out.println("Erro ao alterar quantidade: " + e.getMessage());
-        }
+                throw new IllegalArgumentException("Produto não encontrado no pedido.");
     }
 
     public void calcularTotal(){
@@ -113,36 +107,6 @@ public class Pedido {
 
     public boolean podeFinalizar(){
         return status == StatusPedido.ABERTO && !itens.isEmpty() && valorTotal > 0;
-    }
-
-    public void finalizarPedido(){
-        if (podeFinalizar()){
-            status = StatusPedido.AGUARDANDO_PAGAMENTO;
-            Notificacao.enviarNotificacao("Pedido aguardando pagamento. Total: R$ " + valorTotal);
-        }
-        else{
-            System.out.println("Não foi possível finalizar o pedido. Verifique se o pedido está aberto, se há itens e se o valor total é maior que zero.");
-        }
-    }
-
-    public void pagar(){
-        if (status == StatusPedido.AGUARDANDO_PAGAMENTO){
-            status = StatusPedido.PAGO;
-            Notificacao.enviarNotificacao("Pedido pago. Total: R$ " + valorTotal);
-        }
-        else{
-            System.out.println("Não foi possível pagar o pedido. Verifique se o pedido está aguardando pagamento.");
-        }
-    }
-
-    public void entregar(){
-        if (status == StatusPedido.PAGO){
-            status = StatusPedido.FINALIZADO;
-            Notificacao.enviarNotificacao("Pedido entregue.");
-        }
-        else{
-            System.out.println("Não foi possível entregar o pedido. Verifique se o pedido está pago.");
-        }
     }
 
 }

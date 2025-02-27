@@ -35,4 +35,8 @@ public class ItemPedido {
     public double calcularSubtotal() {
         return quantidade * precoDeVenda;
     }
+
+    public double getSubtotal() {
+        return calcularSubtotal();
+    }
 }
