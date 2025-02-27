@@ -3,6 +3,19 @@ import java.util.Scanner;
 import static FuncoesDaMain.FuncoesDaMain.*;
 
 public class Main {
+    public static int obterOpcaoValida(Scanner scanner) {
+        while (true) {
+            String entrada = scanner.nextLine();
+            try {
+                return Integer.parseInt(entrada);
+            } catch (NumberFormatException e) {
+                System.out.println("\n------------------------------");
+                System.out.println("Entrada inválida! Digite um número válido.");
+                System.out.println("------------------------------\n");
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -20,7 +33,7 @@ public class Main {
             System.out.println("4 - Sair do sistema \n");
 
             System.out.print("Digite a opção desejada: ");
-            opcao = scanner.nextInt();
+            opcao = obterOpcaoValida(scanner);
 
             switch (opcao){
                 case 1:
