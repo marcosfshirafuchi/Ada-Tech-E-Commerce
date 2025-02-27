@@ -2,14 +2,14 @@ package Produtos;
 
 import java.util.Scanner;
 
-import static Produtos.ProdutoRepository.buscarProduto;
-
 public class ProdutoService {
+    ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
+    CategoriaFactory categoriaFactory = new CategoriaFactory();
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void atualizarProduto(int id) {
-        Produto produto = buscarProduto(id);
+    public void atualizarProduto(int id) {
+        Produto produto = produtoRepository.buscarProduto(id);
 
         if (produto != null) {
             System.out.println("Atualização do Produto: ");
@@ -25,7 +25,7 @@ public class ProdutoService {
             System.out.print("Digite a nova categoria (ou pressione Enter para manter): ");
             String novaCategoria = scanner.nextLine();
             if (!novaCategoria.isEmpty()) {
-                while (!CategoriaFactory.isCategoriaValida(novaCategoria.toLowerCase())) {
+                while (!categoriaFactory.isCategoriaValida(novaCategoria.toLowerCase())) {
                     System.out.println("Categoria inválida! Por favor, escolha entre: Eletronicos, Livros, Roupas");
                     novaCategoria = scanner.nextLine();
                 }

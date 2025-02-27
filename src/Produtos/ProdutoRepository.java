@@ -4,13 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProdutoRepository {
-    private static List<Produto> listaProdutos = new ArrayList<>();
+    private static ProdutoRepository instancia;
+    private List<Produto> listaProdutos;
 
-    public static List<Produto> getListaProdutos() {
+    private ProdutoRepository() {
+        listaProdutos = new ArrayList<>();
+    }
+
+    public static synchronized ProdutoRepository getInstancia() {
+        if (instancia == null) {
+            instancia = new ProdutoRepository();
+        }
+        return instancia;
+    }
+
+    public List<Produto> getListaProdutos() {
         return listaProdutos;
     }
 
-    public static void listarProdutos() {
+    public void listarProdutos() {
         if (listaProdutos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado");
         } else {
@@ -20,11 +32,11 @@ public class ProdutoRepository {
         }
     }
 
-    public static void adicionarProduto(Produto produto) {
+    public void adicionarProduto(Produto produto) {
         listaProdutos.add(produto);
     }
 
-    public static Produto buscarProduto(int id) {
+    public Produto buscarProduto(int id) {
         if (listaProdutos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado");
         } else {

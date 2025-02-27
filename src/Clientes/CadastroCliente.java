@@ -6,7 +6,7 @@ import static Clientes.ConsultaCEP.buscarEndereco;
 import static Clientes.ConsultaCEP.obterEndereco;
 import static Clientes.ValidaTelefone.validarTelefone;
 
-public class CadastrarCliente {
+public class CadastroCliente {
     private static int cont = 1;
     public static PessoaFisica cadastrarPessoaFisica() {
         Scanner scanner = new Scanner(System.in);

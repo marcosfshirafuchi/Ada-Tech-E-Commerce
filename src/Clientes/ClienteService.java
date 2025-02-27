@@ -9,10 +9,10 @@ import static Clientes.ConsultaCEP.obterEndereco;
 import static Clientes.ValidaTelefone.validarTelefone;
 
 public class ClienteService {
-
-    public static boolean atualizarDadosCliente(int idCliente) {
+    private BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
+    public boolean atualizarDadosCliente(int idCliente) {
         Scanner scanner = new Scanner(System.in);
-        Cliente cliente = BancoDeDadosClientes.buscarClientePorId(idCliente);
+        Cliente cliente = bancoDeDadosClientes.buscarClientePorId(idCliente);
 
         if (cliente == null) {
             System.out.println("Cliente não encontrado.");

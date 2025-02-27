@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-import static BancoDeDados.BancoDeDadosClientes.listarClientes;
 import static FuncoesDaMain.FuncoesDaMain.*;
 
 public class Main {

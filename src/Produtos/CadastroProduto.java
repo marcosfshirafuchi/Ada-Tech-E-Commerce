@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class CadastroProduto {
     private static Scanner scanner = new Scanner(System.in);
+    CategoriaFactory categoriaFactory = new CategoriaFactory();
+    ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
 
-    public static Produto cadastrarProduto() {
+    public Produto cadastrarProduto() {
         System.out.println("Digite o nome do produto:");
         String nome = scanner.nextLine();
 
@@ -13,10 +15,10 @@ public class CadastroProduto {
         do {
             System.out.println("Digite a categoria do produto (Eletronicos, Livros, Roupas):");
             categoria = scanner.nextLine().toLowerCase();
-            if (!CategoriaFactory.isCategoriaValida(categoria)) {
+            if (!categoriaFactory.isCategoriaValida(categoria)) {
                 System.out.println("Categoria inválida! Por favor, escolha entre: Eletronicos, Livros, Roupas");
             }
-        } while (!CategoriaFactory.isCategoriaValida(categoria));
+        } while (!categoriaFactory.isCategoriaValida(categoria));
 
         double valorDeProduto;
         do {
@@ -45,8 +47,8 @@ public class CadastroProduto {
             }
         } while (desconto < 0 || desconto > 100);
 
-        Produto produto = CategoriaFactory.criarProduto(nome, categoria, valorDeProduto, valorDeVenda, desconto);
-        ProdutoRepository.adicionarProduto(produto);
+        Produto produto = categoriaFactory.criarProduto(nome, categoria, valorDeProduto, valorDeVenda, desconto);
+        produtoRepository.adicionarProduto(produto);
         System.out.println("Produto cadastrado com sucesso!");
         return produto;
     }

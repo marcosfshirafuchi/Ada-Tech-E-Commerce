@@ -4,26 +4,33 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import BancoDeDados.BancoDeDadosClientes;
 import Produtos.Produto;
+import Produtos.ProdutoRepository;
 import Clientes.Cliente;
 
-import static BancoDeDados.BancoDeDadosClientes.*;
-import static Pedido.GerenciadorPedidos.adicionarPedido;
-import static Produtos.ProdutoRepository.*;
-
 public class CadastroPedido {
+    private BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
+    private PedidoRepository pedidoRepository = PedidoRepository.getInstancia();
+    private ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
 
-    public static Pedido cadastrarPedido() {
+    public CadastroPedido(BancoDeDadosClientes bancoDeDadosClientes, PedidoRepository pedidoRepository, ProdutoRepository produtoRepository) {
+        this.bancoDeDadosClientes = bancoDeDadosClientes;
+        this.pedidoRepository = pedidoRepository;
+        this.produtoRepository = produtoRepository;
+    }
+
+    public Pedido cadastrarPedido() {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Escolha um cliente: ");
-        listarClientes();
+        bancoDeDadosClientes.listarClientes();
         System.out.println("Digite o ID do cliente: ");
         int idCliente = scanner.nextInt();
 
-        Cliente cliente = buscarClientePorId(idCliente);
+        Cliente cliente = bancoDeDadosClientes.buscarClientePorId(idCliente);
 
-        Pedido pedido = new Pedido(cliente, LocalDateTime.now(), new ArrayList<>(), 0.0);
+        Pedido pedido = new Pedido(cliente);
 
         System.out.println("Cadastro de Pedido para " + cliente.getNome() + "\n");
 
@@ -31,15 +38,15 @@ public class CadastroPedido {
         while (adicionarProdutos) {
             System.out.print("Escolha o produto para adicionar ao pedido: ");
             System.out.println();
-            listarProdutos();
+            produtoRepository.listarProdutos();
             System.out.println("Digite o ID do produto: ");
             int idProduto = scanner.nextInt();
 
-            Produto produto = buscarProduto(idProduto);
+            Produto produto = produtoRepository.buscarProduto(idProduto);
             if (produto != null) {
                 System.out.print("Digite a quantidade desejada: ");
                 int quantidade = scanner.nextInt();
-                pedido.adicionarItem(produto, quantidade);
+                pedido.adicionarItem(new ItemPedido(produto, quantidade, produto.getValorDeVenda()));
                 System.out.println("Produto " + produto.getNome() + " adicionado ao pedido.");
             } else {
                 System.out.println("Produto não encontrado.");
@@ -47,11 +54,9 @@ public class CadastroPedido {
 
             System.out.println("Deseja adicionar outro produto? (1 - Sim / 2 - Não)");
             int opcao = scanner.nextInt();
-            if (opcao == 2) {
-                adicionarProdutos = false;
-            }
+            adicionarProdutos = opcao == 1;
         }
-        adicionarPedido(pedido);
+        pedidoRepository.salvar(pedido);
         return pedido;
     }
 }

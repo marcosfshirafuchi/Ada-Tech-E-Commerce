@@ -6,7 +6,7 @@ public class CategoriaFactory {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    public static Produto criarProduto(String nome, String categoria, double valorDeProduto, double valorDeVenda, double desconto) {
+    public Produto criarProduto(String nome, String categoria, double valorDeProduto, double valorDeVenda, double desconto) {
         categoria = categoria.toLowerCase();
 
         while (!isCategoriaValida(categoria)) {
@@ -19,11 +19,11 @@ public class CategoriaFactory {
         return criarProdutoValido(nome, categoria, valorDeProduto, valorDeVenda, desconto);
     }
 
-    protected static boolean isCategoriaValida(String categoria) {
+    protected boolean isCategoriaValida(String categoria) {
         return categoria.equals("eletronicos") || categoria.equals("livros") || categoria.equals("roupas");
     }
 
-    private static Produto criarProdutoValido(String nome, String categoria, double valorDeProduto, double valorDeVenda, double desconto) {
+    private Produto criarProdutoValido(String nome, String categoria, double valorDeProduto, double valorDeVenda, double desconto) {
         switch (categoria) {
             case "eletronicos":
                 return new Eletronicos(nome, valorDeProduto, valorDeVenda, desconto);
