@@ -20,6 +20,19 @@ public class FuncoesDaMain {
     static int opcaoProduto;
     static int opcaoPedido;
 
+    public static int obterOpcaoValida(Scanner scanner) {
+        while (true) {
+            String entrada = scanner.nextLine();
+            try {
+                return Integer.parseInt(entrada);
+            } catch (NumberFormatException e) {
+                System.out.println("\n------------------------------");
+                System.out.println("Entrada inválida! Digite um número válido.");
+                System.out.println("------------------------------\n");
+            }
+        }
+    }
+
     public static void escolherCadastroCliente() {
 
         Scanner scanner = new Scanner(System.in);
@@ -33,8 +46,7 @@ public class FuncoesDaMain {
             System.out.println("4 - Voltar ao Menu Principal\n");
             System.out.print("Digite a opção do cliente desejada: ");
 
-            opcaoCliente = scanner.nextInt();
-            scanner.nextLine();
+            opcaoCliente = obterOpcaoValida(scanner);
 
             PessoaFisica pessoafisica = new PessoaFisica();
             PessoaJuridica pessoaJuridica = new PessoaJuridica();
@@ -80,8 +92,7 @@ public class FuncoesDaMain {
             System.out.println("3 - Voltar ao Menu Principal\n");
             System.out.print("Digite a opção desejada: ");
 
-            opcaoProduto = scanner.nextInt();
-            scanner.nextLine();
+            opcaoProduto = obterOpcaoValida(scanner);
 
             switch (opcaoProduto){
                 case 1:
@@ -120,8 +131,7 @@ public class FuncoesDaMain {
             System.out.println("3 - Voltar ao Menu Principal\n");
             System.out.println("Digite a opção desejada: ");
 
-            opcaoPedido = scanner.nextInt();
-            scanner.nextLine();
+            opcaoPedido = obterOpcaoValida(scanner);
 
             switch (opcaoPedido){
                 case 1:
