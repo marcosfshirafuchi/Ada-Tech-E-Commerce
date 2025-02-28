@@ -3,10 +3,10 @@ package FuncoesDaMain;
 import Clientes.*;
 import Pedido.*;
 import Pedido.CadastroPedido;
-import Pedido.PedidoRepository;
+import BancoDeDados.BancoDeDadosPedidos;
 import Pedido.PedidoService;
 import Produtos.CadastroProduto;
-import Produtos.ProdutoRepository;
+import BancoDeDados.BancoDeDadosProdutos;
 import Produtos.ProdutoService;
 import BancoDeDados.BancoDeDadosClientes;
 import java.util.Scanner;
@@ -65,7 +65,7 @@ public class FuncoesDaMain {
                     break;
                 case 3:
                     System.out.println("Lista de clientes cadastrados:");
-                    bancoDeDadosClientes.listarClientes();
+                    bancoDeDadosClientes.listarTodos();
                     break;
                 case 4:
                     System.out.println("Digite o ID do cliente a ser atualizado:");
@@ -91,7 +91,7 @@ public class FuncoesDaMain {
 
     public static void escolherCadastroProduto() {
         CadastroProduto cadastroProduto = new CadastroProduto();
-        ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
+        BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
         ProdutoService produtoService = new ProdutoService();
 
         Scanner scanner = new Scanner(System.in);
@@ -114,7 +114,7 @@ public class FuncoesDaMain {
                 case 2:
                     System.out.print("\n");
                     System.out.println("Lista de produtos cadastrados:");
-                    produtoRepository.listarProdutos();
+                    bancoDeDadosProdutos.listarTodos();
                     break;
                 case 3:
                     System.out.println("Digite o ID do produto a ser atualizado:");
@@ -137,10 +137,10 @@ public class FuncoesDaMain {
 
     public static void escolherCadastroPedido() {
         BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
-        PedidoRepository pedidoRepository = PedidoRepository.getInstancia();
-        ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
+        BancoDeDadosPedidos bancoDeDadosPedidos = BancoDeDadosPedidos.getInstancia();
+        BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
         PedidoService pedidoService = new PedidoService();
-        CadastroPedido cadastroPedido = new CadastroPedido(bancoDeDadosClientes, pedidoRepository, produtoRepository);
+        CadastroPedido cadastroPedido = new CadastroPedido(bancoDeDadosClientes, bancoDeDadosPedidos, bancoDeDadosProdutos);
 
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
@@ -175,7 +175,7 @@ public class FuncoesDaMain {
                 case 2:
                     System.out.print("\n");
                     System.out.println("Lista de pedidos cadastrados:");
-                    pedidoRepository.listarPedidos();
+                    bancoDeDadosPedidos.listarTodos();
                     break;
                 case 3:
                     System.out.print("Digite o ID do pedido: ");
@@ -258,7 +258,7 @@ public class FuncoesDaMain {
     }
 
     private static Pedido buscarPedidoPorId(int idPedido) {
-        Pedido pedido = PedidoRepository.getInstancia().buscarPedido(idPedido);
+        Pedido pedido = BancoDeDadosPedidos.getInstancia().buscarPorId(idPedido);
         if (pedido == null) {
             System.out.println("Pedido não encontrado.");
         }

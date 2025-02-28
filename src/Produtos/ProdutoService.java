@@ -3,13 +3,13 @@ package Produtos;
 import java.util.Scanner;
 
 public class ProdutoService {
-    ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
+    BancoDeDados.BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDados.BancoDeDadosProdutos.getInstancia();
     CategoriaFactory categoriaFactory = new CategoriaFactory();
 
     private static Scanner scanner = new Scanner(System.in);
 
     public void atualizarProduto(int id) {
-        Produto produto = produtoRepository.buscarProduto(id);
+        Produto produto = bancoDeDadosProdutos.buscarPorId(id);
 
         if (produto != null) {
             System.out.println("Atualização do Produto: ");

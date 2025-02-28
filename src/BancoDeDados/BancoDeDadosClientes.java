@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class BancoDeDadosClientes {
+public class BancoDeDadosClientes implements BancoDeDados<Cliente> {
     private static BancoDeDadosClientes instancia;
     private List<Cliente> listaDeClientes;
 
@@ -22,8 +22,36 @@ public class BancoDeDadosClientes {
         }
         return instancia;
     }
+
     public List<Cliente> getListaDeClientes() {
         return listaDeClientes;
+    }
+
+    @Override
+    public void salvar(Cliente cliente) {
+        listaDeClientes.removeIf(c -> c.getIdCliente() == cliente.getIdCliente());
+        listaDeClientes.add(cliente);
+    }
+
+    @Override
+    public void listarTodos(){
+        if (listaDeClientes.isEmpty()){
+            System.out.println("Não há clientes cadastrados.");
+        }
+
+        for (Cliente clientesCadastrados: listaDeClientes){
+            System.out.println(clientesCadastrados);
+        }
+    }
+
+    @Override
+    public Cliente buscarPorId(int idCliente) {
+        for (Cliente cliente : listaDeClientes) {
+            if (cliente.getIdCliente() == idCliente) {
+                return cliente;
+            }
+        }
+        return null;
     }
 
     public List<Cliente> cadastrarClientes(Cliente cliente) {
@@ -56,24 +84,5 @@ public class BancoDeDadosClientes {
 
         }
         return clienteEncontrado;
-    }
-
-    public void listarClientes(){
-        if (listaDeClientes.isEmpty()){
-            System.out.println("Não há clientes cadastrados.");
-        }
-
-        for (Cliente clientesCadastrados: listaDeClientes){
-            System.out.println(clientesCadastrados);
-        }
-    }
-
-    public Cliente buscarClientePorId(int idCliente) {
-        for (Cliente cliente : listaDeClientes) {
-            if (cliente.getIdCliente() == idCliente) {
-                return cliente;
-            }
-        }
-        return null;
     }
 }

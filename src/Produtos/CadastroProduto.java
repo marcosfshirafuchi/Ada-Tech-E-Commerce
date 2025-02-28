@@ -1,13 +1,13 @@
 package Produtos;
 
-import java.util.Scanner;
+import BancoDeDados.BancoDeDadosProdutos;
 
-import static FuncoesDaMain.FuncoesDaMain.escolherCadastroProduto;
+import java.util.Scanner;
 
 public class CadastroProduto {
     private static Scanner scanner = new Scanner(System.in);
     CategoriaFactory categoriaFactory = new CategoriaFactory();
-    ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
+    BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
 
     public void cadastrarProduto() {
         boolean cadastrarNovoProduto = true;
@@ -53,7 +53,7 @@ public class CadastroProduto {
         } while (desconto < 0 || desconto > 100);
 
         Produto produto = categoriaFactory.criarProduto(nome, categoria, valorDeProduto, valorDeVenda, desconto);
-        produtoRepository.adicionarProduto(produto);
+        bancoDeDadosProdutos.salvar(produto);
         System.out.println("Produto cadastrado com sucesso!");
 
             System.out.println("Deseja cadastrar outro produto? (1 - Sim / 2 - Não)");

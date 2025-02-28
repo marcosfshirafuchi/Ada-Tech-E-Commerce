@@ -1,29 +1,30 @@
 package Pedido;
 
+import BancoDeDados.BancoDeDadosPedidos;
 import Pedido.Notificacao.Notificacao;
 import Produtos.Produto;
-import Produtos.ProdutoRepository;
+import BancoDeDados.BancoDeDadosProdutos;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PedidoService {
-    private PedidoRepository pedidoRepository;
-    private ProdutoRepository produtoRepository;
+    private BancoDeDadosPedidos bancoDeDadosPedidos;
+    private BancoDeDadosProdutos bancoDeDadosProdutos;
     Scanner scanner = new Scanner(System.in);
 
     public PedidoService() {
-        this.pedidoRepository = PedidoRepository.getInstancia();
-        this.produtoRepository = ProdutoRepository.getInstancia();
+        this.bancoDeDadosPedidos = BancoDeDadosPedidos.getInstancia();
+        this.bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
     }
 
     public void adicionarItem(Pedido pedido, int idProduto, int quantidade) {
-        Produto produto = produtoRepository.buscarProduto(idProduto);
+        Produto produto = bancoDeDadosProdutos.buscarPorId(idProduto);
         if (produto != null) {
             try {
                 ItemPedido item = new ItemPedido(produto, quantidade, produto.getValorDeVenda());
                 pedido.adicionarItem(item);
-                pedidoRepository.salvar(pedido);
+                bancoDeDadosPedidos.salvar(pedido);
                 System.out.println("Item adicionado ao pedido.");
             } catch (IllegalStateException | IllegalArgumentException e) {
                 System.out.println("Erro ao adicionar item: " + e.getMessage());
@@ -35,12 +36,12 @@ public class PedidoService {
 
     public void removerItem(Pedido pedido, int idProduto) {
         try {
-            Produto produto = produtoRepository.buscarProduto(idProduto);
+            Produto produto = bancoDeDadosProdutos.buscarPorId(idProduto);
             if (produto != null) {
                 try {
                     ItemPedido item = new ItemPedido(produto, 0, 0);
                     pedido.removerItem(item);
-                    pedidoRepository.salvar(pedido);
+                    bancoDeDadosPedidos.salvar(pedido);
                     System.out.println("Item removido do pedido.");
                 } catch (IllegalStateException | IllegalArgumentException e) {
                     System.out.println("Erro ao remover item: " + e.getMessage());
@@ -55,7 +56,7 @@ public class PedidoService {
     }
 
     public void alterarQuantidade(Pedido pedido, int idProduto, int novaQuantidade) {
-        Produto produto = produtoRepository.buscarProduto(idProduto);
+        Produto produto = bancoDeDadosProdutos.buscarPorId(idProduto);
         if (produto != null) {
             ItemPedido item = new ItemPedido(produto, 0, 0);
             while (true) {
@@ -64,7 +65,7 @@ public class PedidoService {
                     novaQuantidade = scanner.nextInt();
                     scanner.nextLine();
                     pedido.alterarQuantidade(item, novaQuantidade);
-                    pedidoRepository.salvar(pedido);
+                    bancoDeDadosPedidos.salvar(pedido);
                     System.out.println("Quantidade alterada com sucesso.");
                     break;
                 } catch (InputMismatchException e) {
@@ -85,7 +86,7 @@ public class PedidoService {
                 if (pedido.podeFinalizar()) {
                     pedido.setStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
                     Notificacao.enviarNotificacao("Pedido aguardando pagamento. Total: R$ " + pedido.getValorTotal());
-                    pedidoRepository.salvar(pedido);
+                    bancoDeDadosPedidos.salvar(pedido);
                     System.out.println("Pedido finalizado com sucesso.");
                 } else {
                     throw new IllegalStateException("Não foi possível finalizar o pedido. Verifique se o pedido está aberto, se há itens e se o valor total é maior que zero.");
@@ -100,7 +101,7 @@ public class PedidoService {
             if (pedido.getStatus() == StatusPedido.AGUARDANDO_PAGAMENTO) {
                 pedido.setStatus(StatusPedido.PAGO);
                 Notificacao.enviarNotificacao("Pedido pago. Total: R$ " + pedido.getValorTotal());
-                pedidoRepository.salvar(pedido);
+                bancoDeDadosPedidos.salvar(pedido);
                 System.out.println("Pedido pago com sucesso.");
             } else {
                 throw new IllegalStateException("Não foi possível pagar o pedido. Verifique se o pedido está aguardando pagamento.");
@@ -115,7 +116,7 @@ public class PedidoService {
             if (pedido.getStatus() == StatusPedido.PAGO) {
                 pedido.setStatus(StatusPedido.FINALIZADO);
                 Notificacao.enviarNotificacao("Pedido entregue.");
-                pedidoRepository.salvar(pedido);
+                bancoDeDadosPedidos.salvar(pedido);
                 System.out.println("Pedido entregue com sucesso.");
             } else {
                 throw new IllegalStateException("Não foi possível entregar o pedido. Verifique se o pedido está pago.");

@@ -3,19 +3,20 @@ package Pedido;
 import java.util.Scanner;
 
 import BancoDeDados.BancoDeDadosClientes;
+import BancoDeDados.BancoDeDadosPedidos;
 import Produtos.Produto;
-import Produtos.ProdutoRepository;
+import BancoDeDados.BancoDeDadosProdutos;
 import Clientes.Cliente;
 
 public class CadastroPedido {
     private BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
-    private PedidoRepository pedidoRepository = PedidoRepository.getInstancia();
-    private ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
+    private BancoDeDadosPedidos bancoDeDadosPedidos = BancoDeDadosPedidos.getInstancia();
+    private BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
 
-    public CadastroPedido(BancoDeDadosClientes bancoDeDadosClientes, PedidoRepository pedidoRepository, ProdutoRepository produtoRepository) {
+    public CadastroPedido(BancoDeDadosClientes bancoDeDadosClientes, BancoDeDadosPedidos bancoDeDadosPedidos, BancoDeDadosProdutos bancoDeDadosProdutos) {
         this.bancoDeDadosClientes = bancoDeDadosClientes;
-        this.pedidoRepository = pedidoRepository;
-        this.produtoRepository = produtoRepository;
+        this.bancoDeDadosPedidos = bancoDeDadosPedidos;
+        this.bancoDeDadosProdutos = bancoDeDadosProdutos;
     }
 
     public Pedido iniciarCadastroPedidos() {
@@ -36,11 +37,11 @@ public class CadastroPedido {
 
     private Pedido cadastrarPedido(Scanner scanner) {
         System.out.println("Escolha um cliente: ");
-        bancoDeDadosClientes.listarClientes();
+        bancoDeDadosClientes.listarTodos();
         System.out.println("Digite o ID do cliente: ");
         int idCliente = scanner.nextInt();
 
-        Cliente cliente = bancoDeDadosClientes.buscarClientePorId(idCliente);
+        Cliente cliente = bancoDeDadosClientes.buscarPorId(idCliente);
 
         Pedido pedido = new Pedido(cliente);
 
@@ -50,11 +51,11 @@ public class CadastroPedido {
         while (adicionarProdutos) {
             System.out.print("Escolha o produto para adicionar ao pedido: ");
             System.out.println();
-            produtoRepository.listarProdutos();
+            bancoDeDadosProdutos.listarTodos();
             System.out.println("Digite o ID do produto: ");
             int idProduto = scanner.nextInt();
 
-            Produto produto = produtoRepository.buscarProduto(idProduto);
+            Produto produto = BancoDeDadosProdutos.getInstancia().buscarPorId(idProduto);
             if (produto != null) {
                 System.out.print("Digite a quantidade desejada: ");
                 int quantidade = scanner.nextInt();
@@ -68,7 +69,7 @@ public class CadastroPedido {
             int opcao = scanner.nextInt();
             adicionarProdutos = opcao == 1;
         }
-        pedidoRepository.salvar(pedido);
+        bancoDeDadosPedidos.salvar(pedido);
         return pedido;
     }
 }
