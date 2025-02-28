@@ -6,7 +6,6 @@ import Pedido.CadastroPedido;
 import Pedido.PedidoRepository;
 import Pedido.PedidoService;
 import Produtos.CadastroProduto;
-import Produtos.Produto;
 import Produtos.ProdutoRepository;
 import Produtos.ProdutoService;
 import BancoDeDados.BancoDeDadosClientes;
@@ -181,39 +180,24 @@ public class FuncoesDaMain {
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedido = pedidoRepository.buscarPedidoPorId(idPedido);
-                    if (pedido != null) {
-                        System.out.print("Digite o ID do produto: ");
-                        int idProduto = scanner.nextInt();
-                        scanner.nextLine();
-                        Produto produto = produtoRepository.buscarProduto(idProduto);
-                        if (produto != null) {
-                            System.out.print("Digite a quantidade: ");
-                            int quantidade = scanner.nextInt();
-                            scanner.nextLine();
-                            pedidoService.adicionarItem(pedido, produto, quantidade);
-                        } else {
-                            System.out.println("Produto não encontrado.");
-                        }
-                    } else {
-                        System.out.println("Pedido não encontrado.");
-                    }
+                    System.out.println("Digite o ID do produto: ");
+                    int idProduto = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Digite a quantidade: ");
+                    int quantidade = scanner.nextInt();
+                    scanner.nextLine();
+                    pedidoService.adicionarItem(idPedido, idProduto, quantidade);
                     break;
                 case 4:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedido = pedidoRepository.buscarPedidoPorId(idPedido);
+                    pedido = pedidoRepository.buscarPedido(idPedido);
                     if (pedido != null) {
                         System.out.print("Digite o ID do produto: ");
-                        int idProduto = scanner.nextInt();
+                        idProduto = scanner.nextInt();
                         scanner.nextLine();
-                        Produto produto = produtoRepository.buscarProduto(idProduto);
-                        if (produto != null) {
-                            pedidoService.removerItem(pedido, new ItemPedido(produto, 0, 0));
-                        } else {
-                            System.out.println("Produto não encontrado.");
-                        }
+                        pedidoService.removerItem(pedido, idProduto);
                     } else {
                         System.out.println("Pedido não encontrado.");
                     }
@@ -222,56 +206,28 @@ public class FuncoesDaMain {
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedido = pedidoRepository.buscarPedidoPorId(idPedido);
-                    if (pedido != null) {
-                        System.out.print("Digite o ID do produto: ");
-                        int idProduto = scanner.nextInt();
-                        scanner.nextLine();
-                        Produto produto = produtoRepository.buscarProduto(idProduto);
-                        if (produto != null) {
-                            System.out.print("Digite a nova quantidade: ");
-                            int novaQuantidade = scanner.nextInt();
-                            scanner.nextLine();
-                            pedidoService.alterarQuantidade(pedido, new ItemPedido(produto, 0, 0), novaQuantidade);
-                        } else {
-                            System.out.println("Produto não encontrado.");
-                        }
-                    } else {
-                        System.out.println("Pedido não encontrado.");
-                    }
+                    System.out.println("Digite o ID do produto: ");
+                    idProduto = scanner.nextInt();
+                    scanner.nextLine();
+                    pedidoService.alterarQuantidade(idPedido, idProduto, 0);
                     break;
                 case 6:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedido = pedidoRepository.buscarPedidoPorId(idPedido);
-                    if (pedido != null) {
-                        pedidoService.finalizarPedido(pedido);
-                    } else {
-                        System.out.println("Pedido não encontrado.");
-                    }
+                    pedidoService.finalizarPedido(idPedido);
                     break;
                 case 7:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedido = pedidoRepository.buscarPedidoPorId(idPedido);
-                    if (pedido != null) {
-                        pedidoService.pagar(pedido);
-                    } else {
-                        System.out.println("Pedido não encontrado.");
-                    }
+                    pedidoService.pagar(idPedido);
                     break;
                 case 8:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedido = pedidoRepository.buscarPedidoPorId(idPedido);
-                    if (pedido != null) {
-                        pedidoService.entregar(pedido);
-                    } else {
-                        System.out.println("Pedido não encontrado.");
-                    }
+                    pedidoService.entregar(idPedido);
                     break;
                 case 9:
                     System.out.println("\n------------------------------");
