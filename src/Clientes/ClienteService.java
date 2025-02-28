@@ -12,7 +12,7 @@ public class ClienteService {
     private BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
     public boolean atualizarDadosCliente(int idCliente) {
         Scanner scanner = new Scanner(System.in);
-        Cliente cliente = bancoDeDadosClientes.buscarClientePorId(idCliente);
+        Cliente cliente = bancoDeDadosClientes.buscarPorId(idCliente);
 
         if (cliente == null) {
             System.out.println("Cliente não encontrado.");

@@ -1,30 +1,35 @@
-package Pedido;
+package BancoDeDados;
+
+import Pedido.Pedido;
+import Pedido.ItemPedido;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PedidoRepository {
-    private static PedidoRepository instancia;
+public class BancoDeDadosPedidos implements BancoDeDados<Pedido> {
+    private static BancoDeDadosPedidos instancia;
     private List<Pedido> pedidos;
 
-    private PedidoRepository() {
+    private BancoDeDadosPedidos() {
         pedidos = new ArrayList<>();
     }
 
-    public static synchronized PedidoRepository getInstancia() {
+    public static synchronized BancoDeDadosPedidos getInstancia() {
         if (instancia == null) {
-            instancia = new PedidoRepository();
+            instancia = new BancoDeDadosPedidos();
         }
         return instancia;
     }
 
+    @Override
     public void salvar(Pedido pedido) {
         pedidos.removeIf(p -> p.getId() == pedido.getId());
         pedidos.add(pedido);
     }
 
-    public void listarPedidos() {
+    @Override
+    public void listarTodos() {
         if (pedidos.isEmpty()) {
             System.out.println("Não há pedidos cadastrados.");
             return;
@@ -43,7 +48,8 @@ public class PedidoRepository {
 
     }
 
-    public Pedido buscarPedido(int id) {
+    @Override
+    public Pedido buscarPorId(int id) {
         for(Pedido pedido : pedidos) {
             if(pedido.getId() == id) {
                 return pedido;

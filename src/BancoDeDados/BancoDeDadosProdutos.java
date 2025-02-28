@@ -1,19 +1,21 @@
-package Produtos;
+package BancoDeDados;
+
+import Produtos.Produto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoRepository {
-    private static ProdutoRepository instancia;
+public class BancoDeDadosProdutos implements BancoDeDados<Produto> {
+    private static BancoDeDadosProdutos instancia;
     private List<Produto> listaProdutos;
 
-    private ProdutoRepository() {
+    private BancoDeDadosProdutos() {
         listaProdutos = new ArrayList<>();
     }
 
-    public static synchronized ProdutoRepository getInstancia() {
+    public static synchronized BancoDeDadosProdutos getInstancia() {
         if (instancia == null) {
-            instancia = new ProdutoRepository();
+            instancia = new BancoDeDadosProdutos();
         }
         return instancia;
     }
@@ -22,7 +24,14 @@ public class ProdutoRepository {
         return listaProdutos;
     }
 
-    public void listarProdutos() {
+    @Override
+    public void salvar(Produto produto) {
+        listaProdutos.removeIf(p -> p.getId() == produto.getId());
+        listaProdutos.add(produto);
+    }
+
+    @Override
+    public void listarTodos() {
         if (listaProdutos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado");
         } else {
@@ -32,11 +41,8 @@ public class ProdutoRepository {
         }
     }
 
-    public void adicionarProduto(Produto produto) {
-        listaProdutos.add(produto);
-    }
-
-    public Produto buscarProduto(int id) {
+    @Override
+    public Produto buscarPorId(int id) {
         if (listaProdutos.isEmpty()) {
             System.out.println("Nenhum produto cadastrado");
         } else {
