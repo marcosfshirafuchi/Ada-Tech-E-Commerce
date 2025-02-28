@@ -1,7 +1,5 @@
 package Pedido;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import BancoDeDados.BancoDeDadosClientes;
@@ -20,9 +18,23 @@ public class CadastroPedido {
         this.produtoRepository = produtoRepository;
     }
 
-    public Pedido cadastrarPedido() {
+    public Pedido iniciarCadastroPedidos() {
         Scanner scanner = new Scanner(System.in);
+        boolean cadastrarPedido = true;
+        Pedido pedido = null;
 
+        while (cadastrarPedido) {
+            cadastrarPedido(scanner);
+
+            System.out.println("Deseja cadastrar outro pedido? (1 - Sim / 2 - Não)");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+            cadastrarPedido = opcao == 1;
+        }
+        return pedido;
+    }
+
+    private Pedido cadastrarPedido(Scanner scanner) {
         System.out.println("Escolha um cliente: ");
         bancoDeDadosClientes.listarClientes();
         System.out.println("Digite o ID do cliente: ");

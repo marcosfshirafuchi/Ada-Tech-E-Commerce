@@ -162,11 +162,12 @@ public class FuncoesDaMain {
 
             Pedido pedido;
             int idPedido;
+            int idProduto;
 
 
             switch (opcaoPedido) {
                 case 1:
-                    pedido = cadastroPedido.cadastrarPedido();
+                    pedido = cadastroPedido.iniciarCadastroPedidos();
                     if (pedido != null) {
                         System.out.println("Pedido cadastrado com sucesso!");
                     }
@@ -180,54 +181,67 @@ public class FuncoesDaMain {
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.println("Digite o ID do produto: ");
-                    int idProduto = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("Digite a quantidade: ");
-                    int quantidade = scanner.nextInt();
-                    scanner.nextLine();
-                    pedidoService.adicionarItem(idPedido, idProduto, quantidade);
+                    pedido = buscarPedidoPorId(idPedido);
+                    if (pedido != null) {
+                        System.out.println("Digite o ID do produto: ");
+                        idProduto = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.println("Digite a quantidade: ");
+                        int quantidade = scanner.nextInt();
+                        scanner.nextLine();
+                        pedidoService.adicionarItem(pedido, idProduto, quantidade);
+                    }
                     break;
                 case 4:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedido = pedidoRepository.buscarPedido(idPedido);
+                    pedido = buscarPedidoPorId(idPedido);
                     if (pedido != null) {
                         System.out.print("Digite o ID do produto: ");
                         idProduto = scanner.nextInt();
                         scanner.nextLine();
                         pedidoService.removerItem(pedido, idProduto);
-                    } else {
-                        System.out.println("Pedido não encontrado.");
                     }
                     break;
                 case 5:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.println("Digite o ID do produto: ");
-                    idProduto = scanner.nextInt();
-                    scanner.nextLine();
-                    pedidoService.alterarQuantidade(idPedido, idProduto, 0);
+                    pedido = buscarPedidoPorId(idPedido);
+                    if (pedido != null) {
+                        System.out.println("Digite o ID do produto: ");
+                        idProduto = scanner.nextInt();
+                        scanner.nextLine();
+                        pedidoService.alterarQuantidade(pedido, idProduto, 0);
+                    }
                     break;
                 case 6:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedidoService.finalizarPedido(idPedido);
+                    pedido = buscarPedidoPorId(idPedido);
+                    if (pedido != null) {
+                        pedidoService.finalizarPedido(pedido);
+                    }
                     break;
                 case 7:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedidoService.pagar(idPedido);
+                    pedido = buscarPedidoPorId(idPedido);
+                    if (pedido != null) {
+                        pedidoService.pagar(pedido);
+                    }
                     break;
                 case 8:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
-                    pedidoService.entregar(idPedido);
+                    pedido = buscarPedidoPorId(idPedido);
+                    if (pedido != null) {
+                        pedidoService.entregar(pedido);
+                    }
                     break;
                 case 9:
                     System.out.println("\n------------------------------");
@@ -241,5 +255,13 @@ public class FuncoesDaMain {
                     System.out.println("------------------------------\n");
             }
         }
+    }
+
+    private static Pedido buscarPedidoPorId(int idPedido) {
+        Pedido pedido = PedidoRepository.getInstancia().buscarPedido(idPedido);
+        if (pedido == null) {
+            System.out.println("Pedido não encontrado.");
+        }
+        return pedido;
     }
 }

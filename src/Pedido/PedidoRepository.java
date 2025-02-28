@@ -32,12 +32,15 @@ public class PedidoRepository {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for(Pedido pedido : pedidos) {
-            System.out.println("Pedido ID: " + pedido.getId() + "\nCliente: " + pedido.getCliente() + "\nStatus: " + pedido.getStatus() + "\nData de criação: " + pedido.getDataCriacao().format(formatter) + "\nValor total: " + pedido.getValorTotal());
+            System.out.println("ID do Pedido: " + pedido.getId() + "\nCliente: " + pedido.getCliente() + "\nStatus: " + pedido.getStatus() + "\nData de criação: " + pedido.getDataCriacao().format(formatter) + "\nValor total: " + pedido.getValorTotal());
             System.out.println("Itens do pedido: ");
             for(ItemPedido item : pedido.getItens()) {
-                System.out.println("Produto: " + item.getProduto().getNome() + "\nQuantidade: " + item.getQuantidade() + "\nPreço de venda: " + item.getPrecoDeVenda() + "\nSubtotal: " + item.getSubtotal());
+                System.out.println("ID do Produto: " + item.getProduto().getId()+ "\nProduto: " + item.getProduto().getNome() + "\nQuantidade: " + item.getQuantidade() + "\nPreço de venda: " + item.getPrecoDeVenda() + "\nSubtotal: " + item.getSubtotal());
+                System.out.println("-------------------------------------------------");
             }
+            System.out.println();
         }
+
     }
 
     public Pedido buscarPedido(int id) {

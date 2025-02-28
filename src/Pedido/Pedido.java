@@ -66,28 +66,32 @@ public class Pedido {
 
     public void removerItem(ItemPedido item){
         validarPedidoAberto("Não é possível remover itens de um pedido que não está aberto.");
-        if (itens.remove(item)) {
+        for (ItemPedido itemPedido : itens) {
+            if (itemPedido.getProduto().equals(item.getProduto())) {
+                itens.remove(itemPedido);
                 calcularTotal();
-        } else {
-                throw new IllegalArgumentException("Item não encontrado no pedido.");
+                return;
+            }
+
         }
+        throw new IllegalArgumentException("Item não encontrado no pedido.");
     }
 
     public void alterarQuantidade(ItemPedido item, int novaQuantidade){
             validarPedidoAberto("Não é possível alterar a quantidade de itens de um pedido que não está aberto.");
             for (ItemPedido i : itens){
-                if (i.equals(item)) {
+                if (i.getProduto().equals(item.getProduto())) {
                     i.setQuantidade(novaQuantidade);
                     calcularTotal();
                     return;
                 }
             }
-                throw new IllegalArgumentException("Produto não encontrado no pedido.");
+            throw new IllegalArgumentException("Produto não encontrado no pedido.");
     }
 
     public void calcularTotal(){
+        valorTotal = 0.0;
         for (ItemPedido item : itens){
-           valorTotal = 0.0;
            valorTotal += item.calcularSubtotal();
         }
     }
