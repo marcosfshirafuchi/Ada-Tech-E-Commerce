@@ -59,6 +59,10 @@ public class BancoDeDadosClientes {
     }
 
     public void listarClientes(){
+        if (listaDeClientes.isEmpty()){
+            System.out.println("Não há clientes cadastrados.");
+        }
+
         for (Cliente clientesCadastrados: listaDeClientes){
             System.out.println(clientesCadastrados);
         }

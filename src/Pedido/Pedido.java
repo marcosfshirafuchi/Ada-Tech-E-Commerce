@@ -59,31 +59,22 @@ public class Pedido {
 
 
     public void adicionarItem(ItemPedido item) {
-            if (status != StatusPedido.ABERTO) {
-                throw new IllegalStateException("Não é possível adicionar itens em um pedido que não está aberto.");
-            }
-
+            validarPedidoAberto("Não é possível adicionar itens a um pedido que não está aberto.");
             itens.add(item);
             calcularTotal();
     }
 
     public void removerItem(ItemPedido item){
-        if (status != StatusPedido.ABERTO) {
-            throw new IllegalStateException("Não é possível remover itens de um pedido que não está aberto.");
-            }
+        validarPedidoAberto("Não é possível remover itens de um pedido que não está aberto.");
         if (itens.remove(item)) {
                 calcularTotal();
-                System.out.println("Item removido com sucesso.");
         } else {
                 throw new IllegalArgumentException("Item não encontrado no pedido.");
         }
     }
 
     public void alterarQuantidade(ItemPedido item, int novaQuantidade){
-            if (status != StatusPedido.ABERTO) {
-                throw new IllegalStateException("Não é possível alterar a quantidade de itens de um pedido que não está aberto.");
-            }
-
+            validarPedidoAberto("Não é possível alterar a quantidade de itens de um pedido que não está aberto.");
             for (ItemPedido i : itens){
                 if (i.equals(item)) {
                     i.setQuantidade(novaQuantidade);
@@ -107,6 +98,12 @@ public class Pedido {
 
     public boolean podeFinalizar(){
         return status == StatusPedido.ABERTO && !itens.isEmpty() && valorTotal > 0;
+    }
+
+    private void validarPedidoAberto(String mensagem) {
+        if (status != StatusPedido.ABERTO) {
+            throw new IllegalStateException(mensagem);
+        }
     }
 
 }
