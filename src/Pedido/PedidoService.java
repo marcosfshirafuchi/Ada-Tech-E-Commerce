@@ -1,7 +1,6 @@
 package Pedido;
 
 import BancoDeDados.BancoDeDadosPedidos;
-import Pedido.Notificacao.Notificacao;
 import Produtos.Produto;
 import BancoDeDados.BancoDeDadosProdutos;
 
@@ -84,8 +83,8 @@ public class PedidoService {
     public void finalizarPedido(Pedido pedido) {
             try {
                 if (pedido.podeFinalizar()) {
-                    pedido.setStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
-                    Notificacao.enviarNotificacao("Pedido aguardando pagamento. Total: R$ " + pedido.getValorTotal());
+                    pedido.alterarStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
+                    pedido.enviarNotificacao("Pedido aguardando pagamento. Total: R$ " + pedido.getValorTotal());
                     bancoDeDadosPedidos.salvar(pedido);
                     System.out.println("Pedido finalizado com sucesso.");
                 } else {
@@ -99,8 +98,8 @@ public class PedidoService {
     public void pagar(Pedido pedido) {
         try {
             if (pedido.getStatus() == StatusPedido.AGUARDANDO_PAGAMENTO) {
-                pedido.setStatus(StatusPedido.PAGO);
-                Notificacao.enviarNotificacao("Pedido pago. Total: R$ " + pedido.getValorTotal());
+                pedido.alterarStatus(StatusPedido.PAGO);
+                pedido.enviarNotificacao("Pedido pago. Total: R$ " + pedido.getValorTotal());
                 bancoDeDadosPedidos.salvar(pedido);
                 System.out.println("Pedido pago com sucesso.");
             } else {
@@ -114,8 +113,8 @@ public class PedidoService {
     public void entregar(Pedido pedido) {
         try {
             if (pedido.getStatus() == StatusPedido.PAGO) {
-                pedido.setStatus(StatusPedido.FINALIZADO);
-                Notificacao.enviarNotificacao("Pedido entregue.");
+                pedido.alterarStatus(StatusPedido.FINALIZADO);
+                pedido.enviarNotificacao("Pedido entregue.");
                 bancoDeDadosPedidos.salvar(pedido);
                 System.out.println("Pedido entregue com sucesso.");
             } else {

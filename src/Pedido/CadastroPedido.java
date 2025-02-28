@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import BancoDeDados.BancoDeDadosClientes;
 import BancoDeDados.BancoDeDadosPedidos;
+import Pedido.Notificacao.*;
 import Produtos.Produto;
 import BancoDeDados.BancoDeDadosProdutos;
 import Clientes.Cliente;
@@ -69,7 +70,38 @@ public class CadastroPedido {
             int opcao = scanner.nextInt();
             adicionarProdutos = opcao == 1;
         }
+        configurarNotificacao(scanner, pedido);
         bancoDeDadosPedidos.salvar(pedido);
         return pedido;
+    }
+
+    private void configurarNotificacao(Scanner scanner, Pedido pedido) {
+        System.out.println("Escolha o tipo de notificação desejada (1 - Whatsapp, 2 - SMS, 3 - E-mail): ");
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        CommunicationServices communicationService = null;
+        switch (opcao) {
+            case 1:
+                communicationService = new WhatsappService();
+                break;
+            case 2:
+                communicationService = new SmsService();
+                break;
+            case 3:
+                communicationService = new EmailService();
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                System.out.println("Deseja escolher outro tipo de notificação? (1 - Sim / 2 - Não)");
+                int escolherNotificacao = scanner.nextInt();
+                scanner.nextLine();
+                if (escolherNotificacao == 1) {
+                    configurarNotificacao(scanner, pedido);
+                }
+                return;
+        }
+        Notificacao notificacao = new Notificacao(communicationService);
+        pedido.setNotificacao(notificacao);
     }
 }

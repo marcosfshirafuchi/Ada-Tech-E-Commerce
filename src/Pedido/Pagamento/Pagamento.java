@@ -16,9 +16,9 @@ public class Pagamento {
 
     public void processarPagamento() {
         if (pedido.getStatus() == StatusPedido.AGUARDANDO_PAGAMENTO) {
-            pedido.setStatus(StatusPedido.PAGO);
+            pedido.alterarStatus(StatusPedido.PAGO);
             status = StatusPagamento.APROVADO;
-            Notificacao.enviarNotificacao("Pedido pago. Total: R$ " + pedido.getValorTotal());
+            pedido.enviarNotificacao("Pedido pago. Total: R$ " + pedido.getValorTotal());
         } else {
             System.out.println("Não foi possível pagar o pedido. Verifique se o pedido está aguardando pagamento.");
         }
