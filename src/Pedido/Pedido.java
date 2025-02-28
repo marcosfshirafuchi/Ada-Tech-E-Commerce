@@ -2,6 +2,7 @@ package Pedido;
 
 import Clientes.Cliente;
 import Frete.CalculadoraFrete;
+import Pedido.Notificacao.Notificacao;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Pedido {
     private List<ItemPedido> itens;
     private double valorTotal;
     private StatusPedido status;
+    private Notificacao notificacao;
 
     public Pedido(Cliente cliente) {
         this.id = gerarId();
@@ -53,8 +55,23 @@ public class Pedido {
         return itens;
     }
 
-    public void setStatus(StatusPedido statusPedido) {
-        this.status = statusPedido;
+    public void setNotificacao(Notificacao notificacao) {
+        this.notificacao = notificacao;
+    }
+
+    public void enviarNotificacao(String mensagem) {
+        if (notificacao != null) {
+            notificacao.enviarNotificacao(mensagem);
+        } else{
+            System.out.println("Nenhuma notificação configurada.");
+        }
+    }
+
+    public void alterarStatus(StatusPedido novoStatus) {
+        this.status = novoStatus;
+        if (notificacao != null) {
+            notificacao.enviarNotificacao("Status do pedido alterado para: " + novoStatus);
+        }
     }
 
 
