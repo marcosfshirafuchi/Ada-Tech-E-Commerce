@@ -2,14 +2,19 @@ package Produtos;
 
 import java.util.Scanner;
 
+import static FuncoesDaMain.FuncoesDaMain.escolherCadastroProduto;
+
 public class CadastroProduto {
     private static Scanner scanner = new Scanner(System.in);
     CategoriaFactory categoriaFactory = new CategoriaFactory();
     ProdutoRepository produtoRepository = ProdutoRepository.getInstancia();
 
-    public Produto cadastrarProduto() {
-        System.out.println("Digite o nome do produto:");
-        String nome = scanner.nextLine();
+    public void cadastrarProduto() {
+        boolean cadastrarNovoProduto = true;
+
+        while (cadastrarNovoProduto) {
+            System.out.println("Digite o nome do produto:");
+            String nome = scanner.nextLine();
 
         String categoria;
         do {
@@ -50,6 +55,11 @@ public class CadastroProduto {
         Produto produto = categoriaFactory.criarProduto(nome, categoria, valorDeProduto, valorDeVenda, desconto);
         produtoRepository.adicionarProduto(produto);
         System.out.println("Produto cadastrado com sucesso!");
-        return produto;
+
+            System.out.println("Deseja cadastrar outro produto? (1 - Sim / 2 - Não)");
+            int opcao = scanner.nextInt();
+            scanner.nextLine();
+            cadastrarNovoProduto = opcao == 1;
+        }
     }
 }
