@@ -17,6 +17,7 @@ public class Pedido {
     private double valorTotal;
     private StatusPedido status;
     private Notificacao notificacao;
+    private double valorFrete;
 
     public Pedido(Cliente cliente) {
         this.id = gerarId();
@@ -69,9 +70,6 @@ public class Pedido {
 
     public void alterarStatus(StatusPedido novoStatus) {
         this.status = novoStatus;
-        if (notificacao != null) {
-            notificacao.enviarNotificacao("Status do pedido alterado para: " + novoStatus);
-        }
     }
 
 
@@ -113,8 +111,13 @@ public class Pedido {
         }
     }
 
-    public double calcularFrete(CalculadoraFrete calculadoraFrete){
-        return calculadoraFrete.calcularFrete(cliente);
+    public double calcularFrete(CalculadoraFrete calculadoraFrete, Cliente cliente){
+        this.valorFrete = calculadoraFrete.calcularFrete(CalculadoraFrete.REMETENTE, cliente);
+        return this.valorFrete;
+    }
+
+    public double getValorFrete(){
+        return this.valorFrete;
     }
 
     public boolean podeFinalizar(){
