@@ -1,6 +1,8 @@
 package FuncoesDaMain;
 
 import Clientes.*;
+import Frete.CalculadoraFrete;
+import Frete.FretePadrao;
 import Pedido.*;
 import Pedido.CadastroPedido;
 import BancoDeDados.BancoDeDadosPedidos;
@@ -139,8 +141,9 @@ public class FuncoesDaMain {
         BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
         BancoDeDadosPedidos bancoDeDadosPedidos = BancoDeDadosPedidos.getInstancia();
         BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
-        PedidoService pedidoService = new PedidoService();
         CadastroPedido cadastroPedido = new CadastroPedido(bancoDeDadosClientes, bancoDeDadosPedidos, bancoDeDadosProdutos);
+        CalculadoraFrete calculadoraFrete = new FretePadrao();
+        PedidoService pedidoService = new PedidoService(calculadoraFrete);
 
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;

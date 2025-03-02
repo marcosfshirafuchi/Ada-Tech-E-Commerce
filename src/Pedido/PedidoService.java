@@ -3,6 +3,8 @@ package Pedido;
 import BancoDeDados.BancoDeDadosPedidos;
 import Produtos.Produto;
 import BancoDeDados.BancoDeDadosProdutos;
+import Frete.CalculadoraFrete;
+import Frete.FretePadrao;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,11 +12,13 @@ import java.util.Scanner;
 public class PedidoService {
     private BancoDeDadosPedidos bancoDeDadosPedidos;
     private BancoDeDadosProdutos bancoDeDadosProdutos;
+    private CalculadoraFrete calculadoraFrete;
     Scanner scanner = new Scanner(System.in);
 
-    public PedidoService() {
+    public PedidoService(CalculadoraFrete calculadoraFrete) {
         this.bancoDeDadosPedidos = BancoDeDadosPedidos.getInstancia();
         this.bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
+        this.calculadoraFrete = calculadoraFrete;
     }
 
     public void adicionarItem(Pedido pedido, int idProduto, int quantidade) {
@@ -83,10 +87,13 @@ public class PedidoService {
     public void finalizarPedido(Pedido pedido) {
             try {
                 if (pedido.podeFinalizar()) {
+                    double frete = pedido.calcularFrete(calculadoraFrete, pedido.getCliente());
                     pedido.alterarStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
                     pedido.enviarNotificacao("Pedido aguardando pagamento. Total: R$ " + pedido.getValorTotal());
                     bancoDeDadosPedidos.salvar(pedido);
-                    System.out.println("Pedido finalizado com sucesso.");
+                    System.out.println("Valor dos itens: R$ " + pedido.getValorTotal());
+                    System.out.println("Valor do frete: R$ " + pedido.getValorFrete());
+                    System.out.println("Valor total: R$ " + (pedido.getValorTotal() + pedido.getValorFrete()));
                 } else {
                     throw new IllegalStateException("Não foi possível finalizar o pedido. Verifique se o pedido está aberto, se há itens e se o valor total é maior que zero.");
                 }
