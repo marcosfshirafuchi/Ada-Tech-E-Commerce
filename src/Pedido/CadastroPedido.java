@@ -21,6 +21,16 @@ public class CadastroPedido {
     }
 
     public Pedido iniciarCadastroPedidos() {
+        if (bancoDeDadosClientes.getListaDeClientes().isEmpty()){
+            System.out.println("Erro: Não há clientes cadastrados. Cadastre um cliente.");
+            return null;
+        }
+
+        if (bancoDeDadosProdutos.getListaProdutos().isEmpty()){
+            System.out.println("Erro: Não há produtos cadastrados. Cadastre um produto.");
+            return null;
+        }
+
         Scanner scanner = new Scanner(System.in);
         boolean cadastrarPedido = true;
         Pedido pedido = null;
@@ -72,6 +82,7 @@ public class CadastroPedido {
         }
         configurarNotificacao(scanner, pedido);
         bancoDeDadosPedidos.salvar(pedido);
+        System.out.println("Pedido cadastrado com sucesso. ID do pedido: " + pedido.getId());
         return pedido;
     }
 
