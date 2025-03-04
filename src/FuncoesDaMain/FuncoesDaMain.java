@@ -6,6 +6,7 @@ import Frete.FretePadrao;
 import Pedido.*;
 import Pedido.CadastroPedido;
 import BancoDeDados.BancoDeDadosPedidos;
+import Pedido.Pagamento.ProcessadorPagamento;
 import Pedido.PedidoService;
 import Produtos.CadastroProduto;
 import BancoDeDados.BancoDeDadosProdutos;
@@ -143,7 +144,10 @@ public class FuncoesDaMain {
         BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
         CadastroPedido cadastroPedido = new CadastroPedido(bancoDeDadosClientes, bancoDeDadosPedidos, bancoDeDadosProdutos);
         CalculadoraFrete calculadoraFrete = new FretePadrao();
-        PedidoService pedidoService = new PedidoService(calculadoraFrete);
+        PedidoService pedidoService = new PedidoService();
+        FinalizacaoPedido finalizacao = new FinalizacaoPedido(calculadoraFrete);
+        EntregaPedido entrega = new EntregaPedido();
+        ProcessadorPagamento processadorPagamento = new ProcessadorPagamento();
 
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
@@ -225,7 +229,7 @@ public class FuncoesDaMain {
                     scanner.nextLine();
                     pedido = buscarPedidoPorId(idPedido);
                     if (pedido != null) {
-                        pedidoService.finalizarPedido(pedido);
+                        finalizacao.finalizarPedido(pedido);
                     }
                     break;
                 case 7:
@@ -234,7 +238,9 @@ public class FuncoesDaMain {
                     scanner.nextLine();
                     pedido = buscarPedidoPorId(idPedido);
                     if (pedido != null) {
-                        pedidoService.pagar(pedido);
+                        System.out.println("Escolha a forma de pagamento:\n1 - Cartão\n2 - Pix");
+                        int opcaoPagamento = obterOpcaoValida(scanner);
+                        processadorPagamento.processarPagamento(pedido, opcaoPagamento);
                     }
                     break;
                 case 8:
@@ -243,7 +249,7 @@ public class FuncoesDaMain {
                     scanner.nextLine();
                     pedido = buscarPedidoPorId(idPedido);
                     if (pedido != null) {
-                        pedidoService.entregar(pedido);
+                        entrega.entregar(pedido);
                     }
                     break;
                 case 9:

@@ -111,15 +111,6 @@ public class Pedido {
         }
     }
 
-    public double calcularFrete(CalculadoraFrete calculadoraFrete, Cliente cliente){
-        this.valorFrete = calculadoraFrete.calcularFrete(CalculadoraFrete.REMETENTE, cliente);
-        return this.valorFrete;
-    }
-
-    public double getValorFrete(){
-        return this.valorFrete;
-    }
-
     public boolean podeFinalizar(){
         return status == StatusPedido.ABERTO && !itens.isEmpty() && valorTotal > 0;
     }
