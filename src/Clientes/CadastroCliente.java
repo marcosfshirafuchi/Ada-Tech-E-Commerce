@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import static Clientes.ConsultaCEP.buscarEndereco;
 import static Clientes.ConsultaCEP.obterEndereco;
+import static Clientes.EmailValidator.isValidEmail;
 import static Clientes.ValidaTelefone.validarTelefone;
 
 public class CadastroCliente {
@@ -29,6 +30,14 @@ public class CadastroCliente {
                 System.out.printf("Erro, Telefone invalido !!!\n");
             }
         } while (!validarTelefone(telefone));
+        String email;
+        do {
+            System.out.print("Digite o e-mail do cliente: ");
+            email = scanner.nextLine();
+            if (!isValidEmail(email)) {
+                System.out.printf("Erro, e-mail invalido !!!\n");
+            }
+        } while (!isValidEmail(email));
         String cep;
         boolean respostaCep;
 
@@ -62,7 +71,7 @@ public class CadastroCliente {
                     System.out.println("Opção incorreta:");
             }
         } while (!(opcao >= 1 && opcao <= 2));
-        PessoaFisica pessoaFisica = new PessoaFisica(cont++,nome, cpf, endereco, telefone, TipoDeCliente.PESSOA_FISICA.getTipoDeCliente());
+        PessoaFisica pessoaFisica = new PessoaFisica(cont++,nome, cpf, endereco, telefone, email,TipoDeCliente.PESSOA_FISICA.getTipoDeCliente());
         return pessoaFisica;
     }
 
@@ -87,6 +96,14 @@ public class CadastroCliente {
                 System.out.printf("Erro, Telefone invalido !!!\n");
             }
         } while (!validarTelefone(telefone));
+        String email;
+        do {
+            System.out.print("Digite o e-mail do cliente: ");
+            email = scanner.nextLine();
+            if (!isValidEmail(email)) {
+                System.out.printf("Erro, e-mail invalido !!!\n");
+            }
+        } while (!isValidEmail(email));
         String cep;
         boolean respostaCep;
         do {
@@ -119,7 +136,7 @@ public class CadastroCliente {
                     System.out.println("Opção incorreta:");
             }
         } while (!(opcao >= 1 && opcao <= 2));
-        PessoaJuridica pessoaJuridica = new PessoaJuridica(cont++,nome, cnpj, endereco, telefone, TipoDeCliente.PESSOA_JURIDICA.getTipoDeCliente());
+        PessoaJuridica pessoaJuridica = new PessoaJuridica(cont++,nome, cnpj, endereco, telefone, email, TipoDeCliente.PESSOA_JURIDICA.getTipoDeCliente());
         return pessoaJuridica;
     }
 }

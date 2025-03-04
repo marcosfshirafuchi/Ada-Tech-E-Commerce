@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import static Clientes.ConsultaCEP.buscarEndereco;
 import static Clientes.ConsultaCEP.obterEndereco;
+import static Clientes.EmailValidator.isValidEmail;
 import static Clientes.ValidaTelefone.validarTelefone;
 
 public class ClienteService {
@@ -52,6 +53,15 @@ public class ClienteService {
             }
         } while (!validarTelefone(telefone));
 
+        String email;
+        do {
+            System.out.print("Digite o e-mail do cliente: ");
+            email = scanner.nextLine();
+            if (!isValidEmail(email)) {
+                System.out.printf("Erro, e-mail invalido !!!\n");
+            }
+        } while (!isValidEmail(email));
+
         String cep;
         boolean respostaCep;
         do {
@@ -85,6 +95,7 @@ public class ClienteService {
         cliente.setNumeroDoDocumento(novoDocumento);
         cliente.setTelefone(telefone);
         cliente.setEndereco(endereco);
+        cliente.setEmail(email);
 
         System.out.println("Dados do cliente atualizados com sucesso!");
         return true;

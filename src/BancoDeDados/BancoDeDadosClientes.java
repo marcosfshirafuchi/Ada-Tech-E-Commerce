@@ -70,6 +70,7 @@ public class BancoDeDadosClientes implements BancoDeDados<Cliente> {
                         clienteDisponivel.getNumeroDoDocumento(),
                         clienteDisponivel.getEndereco(),
                         clienteDisponivel.getTelefone(),
+                        clienteDisponivel.getEmail(),
                         clienteDisponivel.getTipoDeCliente()
                 );
             } else {
@@ -79,6 +80,7 @@ public class BancoDeDadosClientes implements BancoDeDados<Cliente> {
                         clienteDisponivel.getNumeroDoDocumento(),
                         clienteDisponivel.getEndereco(),
                         clienteDisponivel.getTelefone(),
+                        clienteDisponivel.getEmail(),
                         clienteDisponivel.getTipoDeCliente());
             }
 

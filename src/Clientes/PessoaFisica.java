@@ -4,8 +4,8 @@ public class PessoaFisica extends Cliente{
     public PessoaFisica() {
     }
 
-    public PessoaFisica(int idCliente, String nome, String numeroDoDocumento, Endereco endereco, String telefone, String tipoDeCliente) {
-        super(idCliente, nome, numeroDoDocumento, endereco, telefone, tipoDeCliente);
+    public PessoaFisica(int idCliente, String nome, String numeroDoDocumento, Endereco endereco, String telefone, String email, String tipoDeCliente) {
+        super(idCliente, nome, numeroDoDocumento, endereco, telefone, email, tipoDeCliente);
     }
 
     @Override
