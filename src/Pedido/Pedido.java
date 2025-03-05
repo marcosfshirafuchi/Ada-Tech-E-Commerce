@@ -1,7 +1,6 @@
 package Pedido;
 
 import Clientes.Cliente;
-import Frete.CalculadoraFrete;
 import Pedido.Notificacao.Notificacao;
 
 import java.time.LocalDateTime;
@@ -17,7 +16,6 @@ public class Pedido {
     private double valorTotal;
     private StatusPedido status;
     private Notificacao notificacao;
-    private double valorFrete;
 
     public Pedido(Cliente cliente) {
         this.id = gerarId();
