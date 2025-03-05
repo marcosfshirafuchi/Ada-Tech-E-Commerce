@@ -156,13 +156,14 @@ public class FuncoesDaMain {
             System.out.println("Escolha a opção do pedido:\n");
             System.out.println("1 - Cadastro de pedido");
             System.out.println("2 - Imprimir lista de Pedidos");
-            System.out.println("3 - Adicionar item ao pedido");
-            System.out.println("4 - Remover item do pedido");
-            System.out.println("5 - Alterar quantidade de item");
-            System.out.println("6 - Finalizar pedido");
-            System.out.println("7 - Pagar pedido");
-            System.out.println("8 - Entregar pedido");
-            System.out.println("9 - Voltar ao Menu Principal\n");
+            System.out.println("3 - Consultar Status do Pedido");
+            System.out.println("4 - Adicionar item ao pedido");
+            System.out.println("5 - Remover item do pedido");
+            System.out.println("6 - Alterar quantidade de item");
+            System.out.println("7 - Finalizar pedido");
+            System.out.println("8 - Pagar pedido");
+            System.out.println("9 - Entregar pedido");
+            System.out.println("10 - Voltar ao Menu Principal\n");
             System.out.print("Digite a opção desejada: ");
 
             opcaoPedido = obterOpcaoValida(scanner);
@@ -185,6 +186,15 @@ public class FuncoesDaMain {
                     bancoDeDadosPedidos.listarTodos();
                     break;
                 case 3:
+                    System.out.println("Digite o ID do pedido: ");
+                    idPedido = scanner.nextInt();
+                    scanner.nextLine();
+                    pedido = buscarPedidoPorId(idPedido);
+                    if (pedido != null) {
+                        System.out.println("Status do pedido: " + pedido.getStatus());
+                    }
+                    break;
+                case 4:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -199,7 +209,7 @@ public class FuncoesDaMain {
                         pedidoService.adicionarItem(pedido, idProduto, quantidade);
                     }
                     break;
-                case 4:
+                case 5:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -211,7 +221,7 @@ public class FuncoesDaMain {
                         pedidoService.removerItem(pedido, idProduto);
                     }
                     break;
-                case 5:
+                case 6:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -223,7 +233,7 @@ public class FuncoesDaMain {
                         pedidoService.alterarQuantidade(pedido, idProduto, 0);
                     }
                     break;
-                case 6:
+                case 7:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -232,7 +242,7 @@ public class FuncoesDaMain {
                         finalizacao.finalizarPedido(pedido);
                     }
                     break;
-                case 7:
+                case 8:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -243,7 +253,7 @@ public class FuncoesDaMain {
                         processadorPagamento.processarPagamento(pedido, opcaoPagamento);
                     }
                     break;
-                case 8:
+                case 9:
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -252,7 +262,7 @@ public class FuncoesDaMain {
                         entrega.entregar(pedido);
                     }
                     break;
-                case 9:
+                case 10:
                     System.out.println("\n------------------------------");
                     System.out.println("Voltando ao Menu Principal.");
                     System.out.println("------------------------------\n");
