@@ -41,6 +41,55 @@
 <a href="https://ibb.co/KcpJNtSw"><img src="https://i.ibb.co/wZFfJnjs/Ada-Tech-Ecommerce.jpg" alt="Ada-Tech-Ecommerce" border="0"></a>
 </p>
 
+## Como funciona?
+O Ada Commerce é um sistema de E-Commerce desenvolvido em Java que permite gerenciar clientes, produtos e vendas, garantindo um fluxo completo de compra. O sistema segue regras de negócio bem definidas para garantir a integridade dos dados e uma boa experiência ao usuário.
+
+### 📌 Funcionalidades Principais:
+
+### 1. Gerenciamento de Clientes
+
+- Cadastrar novos clientes informando nome, documento de identificação e outros dados.
+- Listar todos os clientes cadastrados.
+- Atualizar informações de clientes.
+- ⚠️ Clientes não podem ser excluídos, apenas atualizados.
+
+### 2. Gerenciamento de Produtos
+
+- Cadastrar novos produtos informando nome, descrição, preço e estoque.
+- Listar todos os produtos disponíveis.
+- Atualizar informações dos produtos.
+- ⚠️ Produtos não podem ser excluídos, apenas atualizados.
+
+### 3. Criação e Gerenciamento de Pedidos
+
+- Criar um pedido para um cliente.
+- Adicionar ou remover produtos no pedido.
+- Alterar a quantidade de um item no pedido.
+- Processar pagamento e alterar o status da venda.
+- Enviar notificações de pagamento e entrega.
+### 4. Fluxo de Pagamento e Entrega
+
+- O pedido só pode ser finalizado se tiver ao menos um item e um valor maior que zero.
+- O status muda para "Aguardando pagamento", e o cliente é notificado.
+- Após o pagamento, o status muda para "Pago" e o cliente recebe uma nova notificação.
+- O pedido pode então ser entregue e finalizado, com a notificação enviada ao cliente.
+
+
+## 🖥️ Como iniciar o programa?
+
+### Ao executar o programa, o usuário verá o seguinte menu no terminal:
+************* Ada Commerce - E-Commerce *************<br><br>
+
+Escolha o tipo de serviço que deseja executar:<br><br>
+
+1 - Menu de Cliente<br>
+2 - Menu de Produto<br>
+3 - Menu de Pedido<br>
+4 - Sair do sistema<br>
+
+Digite a opção desejada:<br>
+
+
 ## Sites que geram CPFs, CNPJs, CEPs e numeros de telefones para testar
 
 ### Gerador de CPF
