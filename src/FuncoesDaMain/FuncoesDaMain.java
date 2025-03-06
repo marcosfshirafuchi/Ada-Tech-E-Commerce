@@ -122,7 +122,9 @@ public class FuncoesDaMain {
                 case 3:
                     System.out.println("Digite o ID do produto a ser atualizado:");
                     int idProduto = scanner.nextInt();
+                    scanner.nextLine();
                     produtoService.atualizarProduto(idProduto);
+                    break;
                 case 4:
                     System.out.println("\n------------------------------");
                     System.out.println("Voltando ao Menu Principal.");

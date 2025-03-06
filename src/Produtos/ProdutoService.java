@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class ProdutoService {
     BancoDeDados.BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDados.BancoDeDadosProdutos.getInstancia();
-    CategoriaFactory categoriaFactory = new CategoriaFactory();
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -14,6 +13,21 @@ public class ProdutoService {
         if (produto != null) {
             System.out.println("Atualização do Produto: ");
 
+            System.out.println("Categoria atual: " + produto.getCategoria());
+            Categoria.printCategorias();
+            System.out.print("Digite o número da nova categoria (ou pressione Enter para manter): ");
+            String novaCategoriaInput = scanner.nextLine();
+            if (!novaCategoriaInput.isEmpty()) {
+                try {
+                    int novaCategoriaIndex = Integer.parseInt(novaCategoriaInput);
+                    Categoria novaCategoria = Categoria.fromInt(novaCategoriaIndex);
+                    produto.setCategoria(novaCategoria);
+                } catch (Exception e) {
+                    System.out.println("Erro: Categoria inválida. A atualização foi cancelada.");
+                    return;
+                }
+            }
+
             System.out.println("Nome atual: " + produto.getNome());
             System.out.print("Digite o novo nome (ou pressione Enter para manter): ");
             String novoNome = scanner.nextLine();
@@ -21,15 +35,22 @@ public class ProdutoService {
                 produto.setNome(novoNome);
             }
 
-            System.out.println("Categoria atual: " + produto.getCategoria());
-            System.out.print("Digite a nova categoria (ou pressione Enter para manter): ");
-            String novaCategoria = scanner.nextLine();
-            if (!novaCategoria.isEmpty()) {
-                while (!categoriaFactory.isCategoriaValida(novaCategoria.toLowerCase())) {
-                    System.out.println("Categoria inválida! Por favor, escolha entre: Eletronicos, Livros, Roupas");
-                    novaCategoria = scanner.nextLine();
+            System.out.println("Preço de custo atual: R$ " + String.format("%.2f", produto.getValorDeProduto()));
+            System.out.print("Digite o novo preço de custo (ou pressione Enter para manter): ");
+            String inputValorCusto = scanner.nextLine();
+            if (!inputValorCusto.isEmpty()) {
+                try {
+                    double novoValorDeCusto = Double.parseDouble(inputValorCusto);
+                    if (novoValorDeCusto > 0) {
+                        produto.setValorDeProduto(novoValorDeCusto);
+                    } else {
+                        System.out.println("Erro: O preço de custo deve ser um valor positivo.");
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Erro: valor inválido. A atualização foi cancelada.");
+                    return;
                 }
-                produto.setCategoria(novaCategoria);
             }
 
             System.out.println("Preço de venda atual: R$ " + String.format("%.2f", produto.getValorDeVenda()));

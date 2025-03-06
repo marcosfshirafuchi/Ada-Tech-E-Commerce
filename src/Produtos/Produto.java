@@ -4,12 +4,12 @@ public abstract class Produto {
     private static int contadorId = 1;
     private int id;
     private String nome;
-    private String categoria;
+    private Categoria categoria;
     private double valorDeProduto;
     private double valorDeVenda;
     private double desconto;
 
-    public Produto(String nome, String categoria, double valorDeProduto, double valorDeVenda, double desconto) {
+    public Produto(String nome, Categoria categoria, double valorDeProduto, double valorDeVenda, double desconto) {
         this.id = contadorId++;
         this.nome = nome;
         this.categoria = categoria;
@@ -32,14 +32,18 @@ public abstract class Produto {
 
     public double getDesconto() {return desconto;}
 
-    public String getCategoria() {return categoria;}
+    public Categoria getCategoria() {return categoria;}
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public void setValorDeProduto(double valorDeProduto) {
+        this.valorDeProduto = valorDeProduto;
     }
 
     public void setValorDeVenda(double valorDeVenda) {
