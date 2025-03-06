@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class ProdutoService {
     BancoDeDados.BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDados.BancoDeDadosProdutos.getInstancia();
-    CategoriaFactory categoriaFactory = new CategoriaFactory();
 
     private static Scanner scanner = new Scanner(System.in);
 
@@ -22,14 +21,18 @@ public class ProdutoService {
             }
 
             System.out.println("Categoria atual: " + produto.getCategoria());
-            System.out.print("Digite a nova categoria (ou pressione Enter para manter): ");
-            String novaCategoria = scanner.nextLine();
-            if (!novaCategoria.isEmpty()) {
-                while (!categoriaFactory.isCategoriaValida(novaCategoria.toLowerCase())) {
-                    System.out.println("Categoria inválida! Por favor, escolha entre: Eletronicos, Livros, Roupas");
-                    novaCategoria = scanner.nextLine();
+            Categoria.printCategorias();
+            System.out.print("Digite o número da nova categoria (ou pressione Enter para manter): ");
+            String novaCategoriaInput = scanner.nextLine();
+            if (!novaCategoriaInput.isEmpty()) {
+                try {
+                    int novaCategoriaIndex = Integer.parseInt(novaCategoriaInput);
+                    Categoria novaCategoria = Categoria.fromInt(novaCategoriaIndex);
+                    produto.setCategoria(novaCategoria);
+                } catch (Exception e) {
+                    System.out.println("Erro: Categoria inválida. A atualização foi cancelada.");
+                    return;
                 }
-                produto.setCategoria(novaCategoria);
             }
 
             System.out.println("Preço de venda atual: R$ " + String.format("%.2f", produto.getValorDeVenda()));

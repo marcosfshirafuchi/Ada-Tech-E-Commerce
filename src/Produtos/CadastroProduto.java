@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class CadastroProduto {
     private static Scanner scanner = new Scanner(System.in);
-    CategoriaFactory categoriaFactory = new CategoriaFactory();
+    CategoriaFactoryImpl categoriaFactory = new CategoriaFactoryImpl();
     BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
 
     public void cadastrarProduto() {
@@ -16,14 +16,10 @@ public class CadastroProduto {
             System.out.println("Digite o nome do produto:");
             String nome = scanner.nextLine();
 
-        String categoria;
-        do {
-            System.out.println("Digite a categoria do produto (Eletronicos, Livros, Roupas):");
-            categoria = scanner.nextLine().toLowerCase();
-            if (!categoriaFactory.isCategoriaValida(categoria)) {
-                System.out.println("Categoria inválida! Por favor, escolha entre: Eletronicos, Livros, Roupas");
-            }
-        } while (!categoriaFactory.isCategoriaValida(categoria));
+            Categoria.printCategorias();
+            int categoriaIndex = scanner.nextInt();
+            scanner.nextLine();
+            Categoria categoria = Categoria.fromInt(categoriaIndex);
 
         double valorDeProduto;
         do {
@@ -60,6 +56,7 @@ public class CadastroProduto {
         System.out.println("Produto cadastrado com sucesso!");
 
         System.out.println("Resumo do produto cadastrado:");
+        System.out.println("Id: " + produto.getId());
         System.out.println("Nome: " + nome);
         System.out.println("Categoria: " + categoria);
         System.out.println("Preço de custo: R$ " + String.format("%.2f", valorDeProduto));
