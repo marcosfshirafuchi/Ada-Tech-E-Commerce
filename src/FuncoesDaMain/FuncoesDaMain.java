@@ -116,11 +116,13 @@ public class FuncoesDaMain {
                     break;
                 case 2:
                     System.out.print("\n");
-                    System.out.println("Lista de produtos cadastrados:");
+                    System.out.println("Lista de produtos cadastrados: ");
                     bancoDeDadosProdutos.listarTodos();
                     break;
                 case 3:
-                    System.out.println("Digite o ID do produto a ser atualizado:");
+                    System.out.println("Escolha um produto a ser atualizado: ");
+                    bancoDeDadosProdutos.listarTodos();
+                    System.out.println("Digite o ID do produto:");
                     int idProduto = scanner.nextInt();
                     scanner.nextLine();
                     produtoService.atualizarProduto(idProduto);
@@ -184,10 +186,12 @@ public class FuncoesDaMain {
                     break;
                 case 2:
                     System.out.print("\n");
-                    System.out.println("Lista de pedidos cadastrados:");
+                    System.out.println("Lista de pedidos cadastrados: ");
                     bancoDeDadosPedidos.listarTodos();
                     break;
                 case 3:
+                    System.out.println("Escolha um pedido: ");
+                    bancoDeDadosPedidos.listarPedidosSimplificado();
                     System.out.println("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -197,6 +201,8 @@ public class FuncoesDaMain {
                     }
                     break;
                 case 4:
+                    System.out.println("Escolha um pedido: ");
+                    bancoDeDadosPedidos.listarPedidosSimplificado();
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -212,6 +218,8 @@ public class FuncoesDaMain {
                     }
                     break;
                 case 5:
+                    System.out.println("Escolha um pedido: ");
+                    bancoDeDadosPedidos.listarPedidosSimplificado();
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -224,6 +232,8 @@ public class FuncoesDaMain {
                     }
                     break;
                 case 6:
+                    System.out.println("Escolha um pedido: ");
+                    bancoDeDadosPedidos.listarPedidosSimplificado();
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -236,6 +246,8 @@ public class FuncoesDaMain {
                     }
                     break;
                 case 7:
+                    System.out.println("Escolha um pedido: ");
+                    bancoDeDadosPedidos.listarPedidosSimplificado();
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -245,6 +257,8 @@ public class FuncoesDaMain {
                     }
                     break;
                 case 8:
+                    System.out.println("Escolha um pedido: ");
+                    bancoDeDadosPedidos.listarPedidosSimplificado();
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();
@@ -256,6 +270,8 @@ public class FuncoesDaMain {
                     }
                     break;
                 case 9:
+                    System.out.println("Escolha um pedido: ");
+                    bancoDeDadosPedidos.listarPedidosSimplificado();
                     System.out.print("Digite o ID do pedido: ");
                     idPedido = scanner.nextInt();
                     scanner.nextLine();

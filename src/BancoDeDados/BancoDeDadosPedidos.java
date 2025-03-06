@@ -48,6 +48,19 @@ public class BancoDeDadosPedidos implements BancoDeDados<Pedido> {
 
     }
 
+    public void listarPedidosSimplificado(){
+        if (pedidos.isEmpty()) {
+            System.out.println("Não há pedidos cadastrados.");
+            return;
+        }
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        for(Pedido pedido : pedidos) {
+            System.out.println("ID do Pedido: " + pedido.getId() + "\nCliente: " + pedido.getCliente().getNome() + "\nData de criação: " + pedido.getDataCriacao().format(formatter));
+            System.out.println();
+        }
+    }
+
     @Override
     public Pedido buscarPorId(int id) {
         for(Pedido pedido : pedidos) {
