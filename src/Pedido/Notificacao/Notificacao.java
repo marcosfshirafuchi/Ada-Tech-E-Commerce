@@ -1,5 +1,7 @@
 package Pedido.Notificacao;
 
+import Clientes.Cliente;
+
 public class Notificacao {
     private CommunicationServices communicationServices;
 
@@ -7,7 +9,7 @@ public class Notificacao {
         this.communicationServices = communicationServices;
     }
 
-    public void enviarNotificacao(String mensagem) {
-        communicationServices.enviarMensagem(mensagem);
+    public void enviarNotificacao(Cliente cliente, String mensagem) {
+        communicationServices.enviarMensagem(cliente, mensagem);
     }
 }

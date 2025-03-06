@@ -13,7 +13,7 @@ public class EntregaPedido {
         try {
             if (pedido.getStatus() == StatusPedido.PAGO) {
                 pedido.alterarStatus(StatusPedido.FINALIZADO);
-                pedido.enviarNotificacao("Pedido entregue.");
+                pedido.enviarNotificacao(pedido.getCliente(), "Pedido entregue.");
                 bancoDeDadosPedidos.salvar(pedido);
                 System.out.println("Pedido entregue com sucesso.");
             } else {
