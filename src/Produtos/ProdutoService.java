@@ -32,24 +32,40 @@ public class ProdutoService {
                 produto.setCategoria(novaCategoria);
             }
 
-            System.out.println("Preço de venda atual: " + produto.getValorDeVenda());
-            System.out.print("Digite o novo preço de venda: ");
-            double novoValorDeVenda = scanner.nextDouble();
-            if (novoValorDeVenda > produto.getValorDeProduto() && novoValorDeVenda >= 0) {
-                produto.setValorDeVenda(novoValorDeVenda);
-            } else {
-                System.out.println("Erro: O preço de venda não pode ser inferior ao preço de custo.");
-                return;
+            System.out.println("Preço de venda atual: R$ " + String.format("%.2f", produto.getValorDeVenda()));
+            System.out.print("Digite o novo preço de venda (ou pressione Enter para manter): ");
+            String inputValorVenda = scanner.nextLine();
+            if (!inputValorVenda.isEmpty()) {
+                try{
+                    double novoValorDeVenda = Double.parseDouble(inputValorVenda);
+                    if (novoValorDeVenda > produto.getValorDeProduto() && novoValorDeVenda >= 0) {
+                        produto.setValorDeVenda(novoValorDeVenda);
+                    } else {
+                        System.out.println("Erro: O preço de venda não pode ser inferior ao preço de custo.");
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Erro: valor inválido. A atualização foi cancelada.");
+                    return;
+                }
             }
 
-            System.out.println("Desconto atual: " + produto.getDesconto() + "%");
-            System.out.print("Digite o novo desconto (em %): ");
-            double novoDesconto = scanner.nextDouble();
-            if (novoDesconto >= 0 && novoDesconto <= 100) {
-                produto.setDesconto(novoDesconto);
-            } else {
-                System.out.println("Erro: O desconto deve ser entre 0% e 100%.");
-                return;
+            System.out.println("Desconto atual: " + String.format("%.2f", produto.getDesconto()) + "%");
+            System.out.print("Digite o novo desconto em % (ou pressione Enter para manter): ");
+            String inputNovoDesconto = scanner.nextLine();
+            if (!inputNovoDesconto.isEmpty()) {
+                try {
+                    double novoDesconto = Double.parseDouble(inputNovoDesconto);
+                    if (novoDesconto >= 0 && novoDesconto <= 100) {
+                        produto.setDesconto(novoDesconto);
+                    } else {
+                        System.out.println("Erro: O desconto deve ser entre 0% e 100%.");
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Erro: valor inválido. A atualização foi cancelada.");
+                    return;
+                }
             }
 
             System.out.println("Produto " + produto.getId() + " atualizado com sucesso.");

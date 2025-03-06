@@ -17,11 +17,11 @@ public class FinalizacaoPedido {
             if (pedido.podeFinalizar()) {
                 double frete = calculadoraFrete.calcularFrete(CalculadoraFrete.REMETENTE, pedido.getCliente());
                 pedido.alterarStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
-                pedido.enviarNotificacao(pedido.getCliente(), "Pedido aguardando pagamento. Total: R$ " + pedido.getValorTotal());
+                pedido.enviarNotificacao(pedido.getCliente(), "Pedido aguardando pagamento. Total: R$ " + String.format("%.2f", pedido.getValorTotal()));
                 bancoDeDadosPedidos.salvar(pedido);
-                System.out.println("Valor dos itens: R$ " + pedido.getValorTotal());
-                System.out.println("Valor do frete: R$ " + frete);
-                System.out.println("Valor total: R$ " + (pedido.getValorTotal() + frete));
+                System.out.println("Valor dos itens: R$ " + String.format("%.2f", pedido.getValorTotal()));
+                System.out.println("Valor do frete: R$ " + String.format("%.2f", frete));
+                System.out.println("Valor total: R$ " + String.format("%.2f", pedido.getValorTotal() + frete));
             } else {
                 throw new IllegalStateException("Não foi possível finalizar o pedido. Verifique se o pedido está aberto, se há itens e se o valor total é maior que zero.");
             }
