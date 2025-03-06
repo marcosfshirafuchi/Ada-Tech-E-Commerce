@@ -13,13 +13,6 @@ public class ProdutoService {
         if (produto != null) {
             System.out.println("Atualização do Produto: ");
 
-            System.out.println("Nome atual: " + produto.getNome());
-            System.out.print("Digite o novo nome (ou pressione Enter para manter): ");
-            String novoNome = scanner.nextLine();
-            if (!novoNome.isEmpty()) {
-                produto.setNome(novoNome);
-            }
-
             System.out.println("Categoria atual: " + produto.getCategoria());
             Categoria.printCategorias();
             System.out.print("Digite o número da nova categoria (ou pressione Enter para manter): ");
@@ -31,6 +24,31 @@ public class ProdutoService {
                     produto.setCategoria(novaCategoria);
                 } catch (Exception e) {
                     System.out.println("Erro: Categoria inválida. A atualização foi cancelada.");
+                    return;
+                }
+            }
+
+            System.out.println("Nome atual: " + produto.getNome());
+            System.out.print("Digite o novo nome (ou pressione Enter para manter): ");
+            String novoNome = scanner.nextLine();
+            if (!novoNome.isEmpty()) {
+                produto.setNome(novoNome);
+            }
+
+            System.out.println("Preço de custo atual: R$ " + String.format("%.2f", produto.getValorDeProduto()));
+            System.out.print("Digite o novo preço de custo (ou pressione Enter para manter): ");
+            String inputValorCusto = scanner.nextLine();
+            if (!inputValorCusto.isEmpty()) {
+                try {
+                    double novoValorDeCusto = Double.parseDouble(inputValorCusto);
+                    if (novoValorDeCusto > 0) {
+                        produto.setValorDeProduto(novoValorDeCusto);
+                    } else {
+                        System.out.println("Erro: O preço de custo deve ser um valor positivo.");
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Erro: valor inválido. A atualização foi cancelada.");
                     return;
                 }
             }

@@ -42,6 +42,10 @@ public abstract class Produto {
         this.categoria = categoria;
     }
 
+    public void setValorDeProduto(double valorDeProduto) {
+        this.valorDeProduto = valorDeProduto;
+    }
+
     public void setValorDeVenda(double valorDeVenda) {
         this.valorDeVenda = valorDeVenda;
     }
