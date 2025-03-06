@@ -16,24 +16,12 @@ import java.util.Scanner;
 
 import static Clientes.CadastroCliente.cadastrarPessoaFisica;
 import static Clientes.CadastroCliente.cadastrarPessoaJuridica;
+import static ValidacaoInput.ValidacaoInput.obterOpcaoValida;
 
 public class FuncoesDaMain {
     static int opcaoCliente;
     static int opcaoProduto;
     static int opcaoPedido;
-
-    public static int obterOpcaoValida(Scanner scanner) {
-        while (true) {
-            String entrada = scanner.nextLine();
-            try {
-                return Integer.parseInt(entrada);
-            } catch (NumberFormatException e) {
-                System.out.println("\n------------------------------");
-                System.out.println("Entrada inválida! Digite um número válido.");
-                System.out.println("------------------------------\n");
-            }
-        }
-    }
 
     public static void escolherCadastroCliente() {
         BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
