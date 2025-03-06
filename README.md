@@ -41,7 +41,7 @@
 <a href="https://ibb.co/KcpJNtSw"><img src="https://i.ibb.co/wZFfJnjs/Ada-Tech-Ecommerce.jpg" alt="Ada-Tech-Ecommerce" border="0"></a>
 </p>
 
-## Sites que geram CPFs, CNPJs, CEPs e numeros para testar
+## Sites que geram CPFs, CNPJs, CEPs e numeros de telefones para testar
 
 ### Gerador de CPF
 
