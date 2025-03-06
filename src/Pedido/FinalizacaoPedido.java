@@ -17,7 +17,7 @@ public class FinalizacaoPedido {
             if (pedido.podeFinalizar()) {
                 double frete = calculadoraFrete.calcularFrete(CalculadoraFrete.REMETENTE, pedido.getCliente());
                 pedido.alterarStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
-                pedido.enviarNotificacao("Pedido aguardando pagamento. Total: R$ " + pedido.getValorTotal());
+                pedido.enviarNotificacao(pedido.getCliente(), "Pedido aguardando pagamento. Total: R$ " + pedido.getValorTotal());
                 bancoDeDadosPedidos.salvar(pedido);
                 System.out.println("Valor dos itens: R$ " + pedido.getValorTotal());
                 System.out.println("Valor do frete: R$ " + frete);

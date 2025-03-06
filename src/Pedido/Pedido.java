@@ -58,9 +58,9 @@ public class Pedido {
         this.notificacao = notificacao;
     }
 
-    public void enviarNotificacao(String mensagem) {
+    public void enviarNotificacao(Cliente cliente, String mensagem) {
         if (notificacao != null) {
-            notificacao.enviarNotificacao(mensagem);
+            notificacao.enviarNotificacao(cliente, mensagem);
         } else{
             System.out.println("Nenhuma notificação configurada.");
         }

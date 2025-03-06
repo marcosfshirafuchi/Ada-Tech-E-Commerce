@@ -11,7 +11,7 @@ public abstract class formaDePagamento {
         try {
             if (pedido.getStatus() == StatusPedido.AGUARDANDO_PAGAMENTO) {
                 pedido.alterarStatus(StatusPedido.PAGO);
-                pedido.enviarNotificacao(getMensagemPagamento(pedido));
+                pedido.enviarNotificacao(pedido.getCliente(), getMensagemPagamento(pedido));
                 bancoDeDadosPedidos.salvar(pedido);
             } else {
                 throw new IllegalStateException("Não foi possível pagar o pedido. Verifique se o pedido está aguardando pagamento.");
