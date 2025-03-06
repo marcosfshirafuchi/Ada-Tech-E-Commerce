@@ -1,8 +1,8 @@
 package Produtos;
 
 import BancoDeDados.BancoDeDadosProdutos;
-
 import java.util.Scanner;
+import static ValidacaoInput.ValidacaoInput.obterValorMonetarioValido;
 
 public class CadastroProduto {
     private static Scanner scanner = new Scanner(System.in);
@@ -24,8 +24,7 @@ public class CadastroProduto {
             double valorDeProduto;
             do {
                 System.out.println("Digite o preço de custo do produto:");
-                valorDeProduto = scanner.nextDouble();
-                scanner.nextLine();
+                valorDeProduto = obterValorMonetarioValido(scanner);
                 if (valorDeProduto <= 0) {
                     System.out.println("Preço de custo deve ser um valor positivo.");
                 }
@@ -34,8 +33,7 @@ public class CadastroProduto {
             double valorDeVenda;
             do {
                 System.out.println("Digite o preço de venda do produto:");
-                valorDeVenda = scanner.nextDouble();
-                scanner.nextLine();
+                valorDeVenda = obterValorMonetarioValido(scanner);
                 if (valorDeVenda <= valorDeProduto) {
                     System.out.println("Preço de venda deve ser superior ao preço de custo.");
                 }
