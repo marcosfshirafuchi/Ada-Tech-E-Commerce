@@ -22,10 +22,10 @@ public class ValidacaoInput {
             String entrada = scanner.nextLine().trim();
 
             if (entrada.isEmpty()) {
-                return -1; // Retorna -1 para indicar que o usuário quer manter o valor anterior
+                return -1;
             }
 
-            entrada = entrada.replace(",", "."); // Substitui vírgulas por pontos
+            entrada = entrada.replace(",", ".");
 
             try {
                 return Double.parseDouble(entrada);

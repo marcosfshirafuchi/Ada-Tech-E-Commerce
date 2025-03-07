@@ -16,7 +16,7 @@ public class Endereco {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
-        this.complemento = (complemento.equals(null)  ? "Sem complemento":complemento);
+        this.complemento = (complemento == null  ? "Sem complemento":complemento);
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
