@@ -39,17 +39,7 @@ public class CadastroProduto {
                 }
             } while (valorDeVenda <= valorDeProduto);
 
-            double desconto;
-            do {
-                System.out.println("Digite o desconto do produto (0 a 100):");
-                desconto = scanner.nextDouble();
-                scanner.nextLine();
-                if (desconto < 0 || desconto > 100) {
-                    System.out.println("Desconto deve ser entre 0% e 100%.");
-                }
-            } while (desconto < 0 || desconto > 100);
-
-            Produto produto = categoriaFactory.criarProduto(nome, categoria, valorDeProduto, valorDeVenda, desconto);
+            Produto produto = categoriaFactory.criarProduto(nome, categoria, valorDeProduto, valorDeVenda);
             bancoDeDadosProdutos.salvar(produto);
             System.out.println("Produto cadastrado com sucesso!");
 
@@ -59,7 +49,6 @@ public class CadastroProduto {
             System.out.println("Categoria: " + categoria);
             System.out.println("Preço de custo: R$ " + String.format("%.2f", valorDeProduto));
             System.out.println("Preço de venda: R$ " + String.format("%.2f", valorDeVenda));
-            System.out.println("Desconto: " + String.format("%.2f", desconto) + "%");
 
             System.out.println("Deseja cadastrar outro produto? (1 - Sim / 2 - Não)");
             int opcao = scanner.nextInt();

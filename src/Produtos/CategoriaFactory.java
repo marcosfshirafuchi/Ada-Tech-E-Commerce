@@ -1,5 +1,5 @@
 package Produtos;
 
 public interface CategoriaFactory {
-    Produto criarProduto(String nome, Categoria categoria, double valorDeProduto, double valorDeVenda, double desconto);
+    Produto criarProduto(String nome, Categoria categoria, double valorDeProduto, double valorDeVenda);
 }

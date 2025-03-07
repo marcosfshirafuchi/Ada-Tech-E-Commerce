@@ -1,23 +1,30 @@
 package Pedido;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 import BancoDeDados.BancoDeDadosClientes;
 import BancoDeDados.BancoDeDadosPedidos;
+import Desconto.Desconto;
+import Desconto.DescontoFixo;
+import Desconto.DescontoPercentual;
 import Pedido.Notificacao.*;
 import Produtos.Produto;
 import BancoDeDados.BancoDeDadosProdutos;
 import Clientes.Cliente;
 
+
 public class CadastroPedido {
     private BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
     private BancoDeDadosPedidos bancoDeDadosPedidos = BancoDeDadosPedidos.getInstancia();
     private BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
+    private PedidoService pedidoService = new PedidoService();
+    private List<Desconto> descontosDisponiveis = new ArrayList<>();
 
-    public CadastroPedido(BancoDeDadosClientes bancoDeDadosClientes, BancoDeDadosPedidos bancoDeDadosPedidos, BancoDeDadosProdutos bancoDeDadosProdutos) {
-        this.bancoDeDadosClientes = bancoDeDadosClientes;
-        this.bancoDeDadosPedidos = bancoDeDadosPedidos;
-        this.bancoDeDadosProdutos = bancoDeDadosProdutos;
+    public CadastroPedido() {
+        descontosDisponiveis.add(new DescontoPercentual(10));
+        descontosDisponiveis.add(new DescontoFixo(30));
     }
 
     public Pedido iniciarCadastroPedidos() {
@@ -80,10 +87,30 @@ public class CadastroPedido {
             int opcao = scanner.nextInt();
             adicionarProdutos = opcao == 1;
         }
+
+        aplicarDesconto(scanner, pedido);
         configurarNotificacao(scanner, pedido);
         bancoDeDadosPedidos.salvar(pedido);
         System.out.println("Pedido cadastrado com sucesso. ID do pedido: " + pedido.getId());
         return pedido;
+    }
+
+    private void aplicarDesconto(Scanner scanner, Pedido pedido) {
+        System.out.println("Escolha um desconto para aplicar:");
+        for (int i = 0; i < descontosDisponiveis.size(); i++) {
+            Desconto desconto = descontosDisponiveis.get(i);
+            System.out.println((i + 1) + " - " + desconto);
+        }
+        int indiceDesconto = scanner.nextInt() - 1;
+        scanner.nextLine();
+
+        if (indiceDesconto >= 0 && indiceDesconto < descontosDisponiveis.size()) {
+            Desconto descontoEscolhido = descontosDisponiveis.get(indiceDesconto);
+            pedido.setDesconto(descontoEscolhido);
+            pedidoService.aplicarDesconto(pedido, descontoEscolhido);
+        } else {
+            System.out.println("Opção inválida.");
+        }
     }
 
     private void configurarNotificacao(Scanner scanner, Pedido pedido) {

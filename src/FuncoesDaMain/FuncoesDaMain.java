@@ -136,7 +136,7 @@ public class FuncoesDaMain {
         BancoDeDadosClientes bancoDeDadosClientes = BancoDeDadosClientes.getInstancia();
         BancoDeDadosPedidos bancoDeDadosPedidos = BancoDeDadosPedidos.getInstancia();
         BancoDeDadosProdutos bancoDeDadosProdutos = BancoDeDadosProdutos.getInstancia();
-        CadastroPedido cadastroPedido = new CadastroPedido(bancoDeDadosClientes, bancoDeDadosPedidos, bancoDeDadosProdutos);
+        CadastroPedido cadastroPedido = new CadastroPedido();
         CalculadoraFrete calculadoraFrete = new FretePadrao();
         PedidoService pedidoService = new PedidoService();
         FinalizacaoPedido finalizacao = new FinalizacaoPedido(calculadoraFrete);

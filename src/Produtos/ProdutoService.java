@@ -60,24 +60,6 @@ public class ProdutoService {
                 }
             }
 
-            System.out.println("Desconto atual: " + String.format("%.2f", produto.getDesconto()) + "%");
-            System.out.print("Digite o novo desconto em % (ou pressione Enter para manter): ");
-            String inputNovoDesconto = scanner.nextLine();
-            if (!inputNovoDesconto.isEmpty()) {
-                try {
-                    double novoDesconto = Double.parseDouble(inputNovoDesconto);
-                    if (novoDesconto >= 0 && novoDesconto <= 100) {
-                        produto.setDesconto(novoDesconto);
-                    } else {
-                        System.out.println("Erro: O desconto deve ser entre 0% e 100%.");
-                        return;
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Erro: valor inválido. A atualização foi cancelada.");
-                    return;
-                }
-            }
-
             System.out.println("Produto " + produto.getId() + " atualizado com sucesso.");
         } else {
             System.out.println("Produto não encontrado.");

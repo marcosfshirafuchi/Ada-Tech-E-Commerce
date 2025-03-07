@@ -7,15 +7,13 @@ public abstract class Produto {
     private Categoria categoria;
     private double valorDeProduto;
     private double valorDeVenda;
-    private double desconto;
 
-    public Produto(String nome, Categoria categoria, double valorDeProduto, double valorDeVenda, double desconto) {
+    public Produto(String nome, Categoria categoria, double valorDeProduto, double valorDeVenda) {
         this.id = contadorId++;
         this.nome = nome;
         this.categoria = categoria;
         this.valorDeProduto = valorDeProduto;
         this.valorDeVenda = valorDeVenda;
-        this.desconto = desconto;
     }
 
     public String getNome() {
@@ -29,8 +27,6 @@ public abstract class Produto {
     public double getValorDeVenda() {
         return valorDeVenda;
     }
-
-    public double getDesconto() {return desconto;}
 
     public Categoria getCategoria() {return categoria;}
 
@@ -50,12 +46,8 @@ public abstract class Produto {
         this.valorDeVenda = valorDeVenda;
     }
 
-    public void setDesconto(double desconto) {
-        this.desconto = desconto;
-    }
-
     @Override
     public String toString() {
-        return "Produto{" + "id = " + id + ", nome = " + nome + ", categoria = " + categoria + ", valorDeProduto = " + valorDeProduto + ", valorDeVenda = " + valorDeVenda + ", desconto = " + desconto + '}';
+        return "Produto{" + "id = " + id + ", nome = " + nome + ", categoria = " + categoria + ", valorDeProduto = " + valorDeProduto + ", valorDeVenda = " + valorDeVenda + '}';
     }
 }
