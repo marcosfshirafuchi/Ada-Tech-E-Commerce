@@ -1,9 +1,9 @@
 package Pedido;
 
 import BancoDeDados.BancoDeDadosPedidos;
+import Desconto.Desconto;
 import Produtos.Produto;
 import BancoDeDados.BancoDeDadosProdutos;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -79,4 +79,9 @@ public class PedidoService {
             System.out.println("Produto não encontrado.");
         }
     }
+
+    public double aplicarDesconto(Pedido pedido, Desconto desconto) {
+        return desconto.aplicarDesconto(pedido.getValorTotal());
+    }
 }
+

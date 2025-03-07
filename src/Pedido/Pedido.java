@@ -1,6 +1,7 @@
 package Pedido;
 
 import Clientes.Cliente;
+import Desconto.Desconto;
 import Pedido.Notificacao.Notificacao;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class Pedido {
     private LocalDateTime dataCriacao;
     private List<ItemPedido> itens;
     private double valorTotal;
+    private Desconto desconto;
     private StatusPedido status;
     private Notificacao notificacao;
 
@@ -24,6 +26,7 @@ public class Pedido {
         this.itens = new ArrayList<>();
         this.valorTotal = 0.0;
         this.status = StatusPedido.ABERTO;
+        this.desconto = null;
     }
 
     private int gerarId(){
@@ -48,6 +51,14 @@ public class Pedido {
 
     public double getValorTotal() {
         return valorTotal;
+    }
+
+    public Desconto getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(Desconto desconto) {
+        this.desconto = desconto;
     }
 
     public List<ItemPedido> getItens(){
@@ -103,7 +114,7 @@ public class Pedido {
     }
 
     public void calcularTotal(){
-        valorTotal = 0.0;
+        double total = 0.0;
         for (ItemPedido item : itens){
            valorTotal += item.calcularSubtotal();
         }
