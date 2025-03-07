@@ -40,6 +40,7 @@ public class BancoDeDadosPedidos implements BancoDeDados<Pedido> {
             System.out.println("ID do Pedido: " + pedido.getId() + "\nCliente: " + pedido.getCliente() + "\nStatus: " + pedido.getStatus() + "\nData de criação: " + pedido.getDataCriacao().format(formatter) + "\nValor total: " + String.format("%.2f", pedido.getValorTotal()));
             System.out.println("Itens do pedido: ");
             for(ItemPedido item : pedido.getItens()) {
+                System.out.println("-------------------------------------------------");
                 System.out.println("ID do Produto: " + item.getProduto().getId()+ "\nProduto: " + item.getProduto().getNome() + "\nQuantidade: " + item.getQuantidade() + "\nPreço de venda: " + String.format("%.2f", item.getPrecoDeVenda()) + "\nSubtotal: " + String.format("%.2f", item.getSubtotal()));
                 System.out.println("-------------------------------------------------");
             }

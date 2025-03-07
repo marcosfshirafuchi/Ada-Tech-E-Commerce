@@ -20,7 +20,7 @@ public class FinalizacaoPedido {
                 double frete = calculadoraFrete.calcularFrete(CalculadoraFrete.REMETENTE, pedido.getCliente());
                 double valorComDesconto = pedidoService.aplicarDesconto(pedido, pedido.getDesconto());
                 pedido.alterarStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
-                pedido.enviarNotificacao(pedido.getCliente(), "Pedido aguardando pagamento. Total: R$ " + String.format("%.2f", valorComDesconto));
+                pedido.enviarNotificacao(pedido.getCliente(), "Pedido aguardando pagamento. Total: R$ " + String.format("%.2f", valorComDesconto + frete));
                 bancoDeDadosPedidos.salvar(pedido);
                 System.out.println("Valor dos itens: R$ " + String.format("%.2f", pedido.getValorTotal()));
                 System.out.println("Valor do frete: R$ " + String.format("%.2f", frete));
