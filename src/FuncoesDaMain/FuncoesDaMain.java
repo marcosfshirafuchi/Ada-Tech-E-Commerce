@@ -59,6 +59,8 @@ public class FuncoesDaMain {
                     bancoDeDadosClientes.listarTodos();
                     break;
                 case 4:
+                    System.out.println("Escolha um cliente a ser atualizado: ");
+                    bancoDeDadosClientes.listarTodos();
                     System.out.println("Digite o ID do cliente a ser atualizado:");
                     int idCliente = scanner.nextInt();
                     scanner.nextLine();
@@ -196,6 +198,8 @@ public class FuncoesDaMain {
                     scanner.nextLine();
                     pedido = buscarPedidoPorId(idPedido);
                     if (pedido != null) {
+                        System.out.println("Escolha o produto a ser adicionado: ");
+                        bancoDeDadosProdutos.listarTodos();
                         System.out.println("Digite o ID do produto: ");
                         idProduto = scanner.nextInt();
                         scanner.nextLine();
@@ -213,6 +217,8 @@ public class FuncoesDaMain {
                     scanner.nextLine();
                     pedido = buscarPedidoPorId(idPedido);
                     if (pedido != null) {
+                        System.out.println("Escolha o produto a ser removido: ");
+                        bancoDeDadosPedidos.imprimirItensDoPedido(pedido); // imprimirItensDoPedido
                         System.out.print("Digite o ID do produto: ");
                         idProduto = scanner.nextInt();
                         scanner.nextLine();
@@ -227,6 +233,8 @@ public class FuncoesDaMain {
                     scanner.nextLine();
                     pedido = buscarPedidoPorId(idPedido);
                     if (pedido != null) {
+                        System.out.println("Escolha o produto a ser removido: ");
+                        bancoDeDadosPedidos.imprimirItensDoPedido(pedido);
                         System.out.println("Digite o ID do produto: ");
                         idProduto = scanner.nextInt();
                         scanner.nextLine();

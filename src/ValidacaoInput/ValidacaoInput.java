@@ -20,7 +20,12 @@ public class ValidacaoInput {
     public static double obterValorMonetarioValido(Scanner scanner) {
         while (true) {
             String entrada = scanner.nextLine().trim();
-            entrada = entrada.replace(",", "."); // Substitui vírgulas por pontos
+
+            if (entrada.isEmpty()) {
+                return -1;
+            }
+
+            entrada = entrada.replace(",", ".");
 
             try {
                 return Double.parseDouble(entrada);

@@ -72,4 +72,16 @@ public class BancoDeDadosPedidos implements BancoDeDados<Pedido> {
         return null;
     }
 
+    public void imprimirItensDoPedido(Pedido pedido) {
+        if (pedido.getItens().isEmpty()) {
+            System.out.println("O pedido não possui itens.");
+        } else {
+            System.out.println("Itens do pedido: ");
+            for(ItemPedido item : pedido.getItens()) {
+                System.out.println("ID do Produto: " + item.getProduto().getId()+ "\nProduto: " + item.getProduto().getNome() + "\nQuantidade: " + item.getQuantidade() + "\nPreço de venda: " + String.format("%.2f", item.getPrecoDeVenda()) + "\nSubtotal: " + String.format("%.2f", item.getSubtotal()));
+                System.out.println("-------------------------------------------------");
+            }
+        }
+    }
+
 }

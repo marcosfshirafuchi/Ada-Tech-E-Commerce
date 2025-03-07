@@ -39,21 +39,25 @@ public class ProdutoService {
             System.out.println("Preço de custo atual: R$ " + String.format("%.2f", produto.getValorDeProduto()));
             System.out.print("Digite o novo preço de custo (ou pressione Enter para manter): ");
             double novoValorDeCusto = obterValorMonetarioValido(scanner);
-            if (novoValorDeCusto > 0) {
-                produto.setValorDeProduto(novoValorDeCusto);
-            } else {
-                System.out.println("Erro: O preço de custo deve ser um valor positivo.");
-                return;
+            if (novoValorDeCusto != -1) { // Apenas altera se o usuário digitou um novo valor
+                if (novoValorDeCusto > 0) {
+                    produto.setValorDeProduto(novoValorDeCusto);
+                } else {
+                    System.out.println("Erro: O preço de custo deve ser um valor positivo.");
+                    return;
+                }
             }
 
             System.out.println("Preço de venda atual: R$ " + String.format("%.2f", produto.getValorDeVenda()));
             System.out.print("Digite o novo preço de venda (ou pressione Enter para manter): ");
             double novoValorDeVenda = obterValorMonetarioValido(scanner);
-            if (novoValorDeVenda > produto.getValorDeProduto() && novoValorDeVenda >= 0) {
-                produto.setValorDeVenda(novoValorDeVenda);
-            } else {
-                System.out.println("Erro: O preço de venda não pode ser inferior ao preço de custo.");
-                return;
+            if (novoValorDeVenda != -1) { // Apenas altera se o usuário digitou um novo valor
+                if (novoValorDeVenda >= produto.getValorDeProduto()) {
+                    produto.setValorDeVenda(novoValorDeVenda);
+                } else {
+                    System.out.println("Erro: O preço de venda não pode ser inferior ao preço de custo.");
+                    return;
+                }
             }
 
             System.out.println("Desconto atual: " + String.format("%.2f", produto.getDesconto()) + "%");
